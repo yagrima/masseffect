@@ -9,7 +9,7 @@ import { SimpleItem } from "./item.js";
 import { SimpleItemSheet } from "./item-sheet.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
-import { createMassEffectMacro } from "./macro.js";
+/*import { createMassEffectMacro } from "./macro.js";*/
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
 
 /* -------------------------------------------- */
@@ -32,8 +32,8 @@ Hooks.once("init", async function() {
   };
 
   game.masseffect = {
-    SimpleActor,
-    createMassEffectMacro
+    SimpleActor/*,
+    createMassEffectMacro*/
   };
 
   // Define custom Document classes
@@ -101,7 +101,7 @@ Hooks.once("init", async function() {
 /**
  * Macrobar hook.
  */
-Hooks.on("hotbarDrop", (bar, data, slot) => createMassEffectMacro(data, slot));
+/*Hooks.on("hotbarDrop", (bar, data, slot) => createMassEffectMacro(data, slot));*/
 
 /**
  * Adds the actor template context menu.

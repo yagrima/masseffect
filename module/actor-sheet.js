@@ -26,7 +26,6 @@ export class SimpleActorSheet extends ActorSheet {
   async getData(options) {
     const context = await super.getData(options);
     EntitySheetHelper.getAttributeData(context.data);
-    context.shorthand = !!game.settings.get("masseffect", "macroShorthand");
     context.systemData = context.data.system;
     context.dtypes = ATTRIBUTE_TYPES;
     context.biographyHTML = await TextEditor.enrichHTML(context.systemData.biography, {
