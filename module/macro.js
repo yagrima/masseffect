@@ -5,7 +5,7 @@
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-export async function createWorldbuildingMacro(data, slot) {
+export async function createMassEffectMacro(data, slot) {
   if ( !data.roll || !data.label ) return false;
   const command = `const roll = new Roll("${data.roll}", actor ? actor.getRollData() : {});
   roll.toMessage({speaker, flavor: "${data.label}"});`;
@@ -15,7 +15,7 @@ export async function createWorldbuildingMacro(data, slot) {
       name: data.label,
       type: "script",
       command: command,
-      flags: { "worldbuilding.attrMacro": true }
+      flags: { "masseffect.attrMacro": true }
     });
   }
   game.user.assignHotbarMacro(macro, slot);

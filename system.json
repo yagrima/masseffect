@@ -2,7 +2,7 @@
   "id": "masseffect",
   "version": "0.1",
   "title": "Mass Effect Sandbox",
-  "url": "https://gitlab.com/foundrynet/worldbuilding/",
+  "url": "https://github.com/yagrima/masseffect",
   "description": "A minimalist game system which provides configurable Actor and Item templates to support free-form system agnostic game-play.",
   "license": "LICENSE.txt",
   "authors": [
@@ -27,8 +27,8 @@
     "verified": "10.288",
     "maximum": "10"
   },
-  "gridDistance": 5,
-  "gridUnits": "ft",
+  "gridDistance": 1,
+  "gridUnits": "m",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "manifest": "https://github.com/yagrima/masseffect/blob/main/system.json",

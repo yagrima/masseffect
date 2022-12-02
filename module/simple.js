@@ -9,7 +9,7 @@ import { SimpleItem } from "./item.js";
 import { SimpleItemSheet } from "./item-sheet.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
-import { createWorldbuildingMacro } from "./macro.js";
+import { createMassEffectMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
 
 /* -------------------------------------------- */
@@ -20,7 +20,7 @@ import { SimpleToken, SimpleTokenDocument } from "./token.js";
  * Init hook.
  */
 Hooks.once("init", async function() {
-  console.log(`Initializing Simple Worldbuilding System`);
+  console.log(`Initializing Simple Mass Effect System`);
 
   /**
    * Set an initiative formula for the system. This will be updated later.
@@ -31,9 +31,9 @@ Hooks.once("init", async function() {
     decimals: 2
   };
 
-  game.worldbuilding = {
+  game.masseffect = {
     SimpleActor,
-    createWorldbuildingMacro
+    createMassEffectMacro
   };
 
   // Define custom Document classes
@@ -44,12 +44,12 @@ Hooks.once("init", async function() {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("worldbuilding", SimpleActorSheet, { makeDefault: true });
+  Actors.registerSheet("masseffect", SimpleActorSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("worldbuilding", SimpleItemSheet, { makeDefault: true });
+  Items.registerSheet("masseffect", SimpleItemSheet, { makeDefault: true });
 
   // Register system settings
-  game.settings.register("worldbuilding", "macroShorthand", {
+  game.settings.register("masseffect", "macroShorthand", {
     name: "SETTINGS.SimpleMacroShorthandN",
     hint: "SETTINGS.SimpleMacroShorthandL",
     scope: "world",
@@ -59,7 +59,7 @@ Hooks.once("init", async function() {
   });
 
   // Register initiative setting.
-  game.settings.register("worldbuilding", "initFormula", {
+  game.settings.register("masseffect", "initFormula", {
     name: "SETTINGS.SimpleInitFormulaN",
     hint: "SETTINGS.SimpleInitFormulaL",
     scope: "world",
@@ -70,7 +70,7 @@ Hooks.once("init", async function() {
   });
 
   // Retrieve and assign the initiative formula setting.
-  const initFormula = game.settings.get("worldbuilding", "initFormula");
+  const initFormula = game.settings.get("masseffect", "initFormula");
   _simpleUpdateInit(initFormula);
 
   /**
@@ -101,7 +101,7 @@ Hooks.once("init", async function() {
 /**
  * Macrobar hook.
  */
-Hooks.on("hotbarDrop", (bar, data, slot) => createWorldbuildingMacro(data, slot));
+Hooks.on("hotbarDrop", (bar, data, slot) => createMassEffectMacro(data, slot));
 
 /**
  * Adds the actor template context menu.
@@ -118,7 +118,7 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const actor = game.actors.get(li.data("documentId"));
-      actor.setFlag("worldbuilding", "isTemplate", true);
+      actor.setFlag("masseffect", "isTemplate", true);
     }
   });
 
@@ -132,7 +132,7 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const actor = game.actors.get(li.data("documentId"));
-      actor.setFlag("worldbuilding", "isTemplate", false);
+      actor.setFlag("masseffect", "isTemplate", false);
     }
   });
 });
@@ -152,7 +152,7 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const item = game.items.get(li.data("documentId"));
-      item.setFlag("worldbuilding", "isTemplate", true);
+      item.setFlag("masseffect", "isTemplate", true);
     }
   });
 
@@ -166,7 +166,7 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const item = game.items.get(li.data("documentId"));
-      item.setFlag("worldbuilding", "isTemplate", false);
+      item.setFlag("masseffect", "isTemplate", false);
     }
   });
 });
