@@ -32,5 +32,5 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "manifest": "https://github.com/yagrima/masseffect/blob/main/system.json",
-  "download": "https://github.com/foundryvtt/worldbuilding/archive/refs/tags/release-072.zip"
+  "download": "https://github.com/yagrima/masseffect/blob/main/empty.zip"
 }
