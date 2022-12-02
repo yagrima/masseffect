@@ -1,3 +1,6 @@
+.center {
+  text-align: center;
+}
 .masseffect {
   /* Sheet Tabs */
   /* Items List */
@@ -69,10 +72,51 @@
 }
 .masseffect .sheet-body .tab {
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
+}
+.masseffect .sheet-body .tab .lefttab {
+  width: 24%;
+  display: inline-block;
+  vertical-align: center;
+}
+.masseffect .sheet-body .tab .righttab {
+  width: 74%;
+  display: inline-block;
+}
+.masseffect .sheet-body .tab .righttab .spacedlabel {
+  margin-left: 15px;
+}
+.masseffect .sheet-body .tab .righttab .spacedbox {
+  margin-left: 15px;
+  margin-bottom: 5px;
+  border: 0px;
+}
+.masseffect .sheet-body .tab .tentab {
+  width: 9%;
+  display: inline-block;
+}
+.masseffect .sheet-body .tab .thirtytab {
+  width: 29%;
+  display: inline-block;
+}
+.masseffect .sheet-body .tab .halftab {
+  width: 49%;
+  display: inline-block;
+}
+.masseffect .sheet-body .tab .background {
+  border: 0px;
+  text-align: center;
+}
+.masseffect .sheet-body .tab .inputfield {
+  border: 0px;
+  font-weight: bold;
+  margin-right: 15px;
+  text-align: center;
+  width: 25%;
 }
 .masseffect .editor,
 .masseffect .editor-content {
+  padding: 5px;
   height: 100%;
 }
 .masseffect .item-list {

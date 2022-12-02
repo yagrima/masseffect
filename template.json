@@ -3,6 +3,12 @@
   "types": ["character"],
   "htmlFields": ["biography"],
   "character": {
+    "bio": {
+      "race": "",
+      "origin": "",
+      "age": 0,
+      "height":""
+    },
     "biography": "",
     "health": {
       "value": 10,
@@ -14,7 +20,20 @@
       "min": 0,
       "max": 5
     },
-    "attributes": {},
+    "attributes": {
+      "dexterity": {
+        "min": 1,
+        "max": 6,
+        "current": 3
+      },
+      "size": 1,
+      "body": 1,
+      "reflexes": 1,
+      "luck": 1,
+      "brains": 1,
+      "personality": 1,
+      "tech": 1
+    },
     "groups": {}
   }
 },

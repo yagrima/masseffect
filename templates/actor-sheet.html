@@ -2,11 +2,9 @@
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" height="100" width="100" />
+        
         <div class="header-fields">
-            <h1 class="charname">
-                <input name="name" type="text" value="{{data.name}}" placeholder="Name" />
-            </h1>
+
             <div class="resource">
                 <input type="number" name="system.health.value" value="{{systemData.health.value}}"/>
                 <span> / </span>
@@ -22,9 +20,12 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="items">Items</a>
-        <a class="item" data-tab="attributes">Attributes</a>
+        <a class="item" data-tab="description">Kurzbio</a>
+        <a class="item" data-tab="attributes">Attribute</a>
+        <a class="item" data-tab="skills">Fertigkeiten</a>
+        <a class="item" data-tab="combat">Kampf</a>
+        <a class="item" data-tab="items">Ausrüstung</a>
+        
     </nav>
 
     {{!-- Sheet Body --}}
@@ -32,7 +33,51 @@
 
         {{!-- Biography Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
-            {{editor biographyHTML target="system.biography" button=true editable=editable engine="prosemirror"}}
+            <div class="lefttab">
+                <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" height="243" width="150" />
+            </div>
+            <div class="righttab">
+                <label class="spacedlabel" for="name">Name:</label>
+                <input class="spacedbox" name="name" type="text" value="{{data.name}}" placeholder="Dein Charakter hat keinen Namen?" />
+                <label class="spacedlabel" for="race">Rasse:</label>
+                <input class="spacedbox" name="race" type="text" value="{{data.bio.race}}" placeholder="Welche Rasse hatten deine Eltern?" />
+                <label class="spacedlabel" for="origin">Herkunft:</label>
+                <input class="spacedbox" name="origin" type="text" value="{{data.bio.origin}}" placeholder="Wo wurdest du geboren?" />
+                <label class="spacedlabel" for="gender">Alter:</label>
+                <input class="spacedbox" name="gender" type="text" value="{{data.bio.gender}}" placeholder="Wie lange machst du schon Probleme?"/>
+                <label class="spacedlabel" for="height">Größe und Gewicht:</label>
+                <input class="spacedbox" name="height" type="text" value="{{data.bio.height}}" placeholder=""/>
+            </div>
+            <div class="editortab">
+                Charaktergeschichte:
+                {{editor biographyHTML target="system.biography" button=true editable=editable engine="prosemirror"}}
+            </div>
+        </div>
+
+        {{!-- Attributes Tab --}}
+        <div class="tab description" data-group="primary" data-tab="attributes">
+            <div class="halftab">
+                <br>
+                <div class="halftab">
+                    <label class="spacedlabel" for="dexterity">Geschick:</label>
+                </div>
+                <div class="halftab">
+                    <input class="inputfield" type="number" name="dexterity" min="{{data.attributes.dexterity.min}}" max="{{data.attributes.dexterity.max}}" placeholder="1" value="{{data.attributes.dexterity.current}}">
+                </div>
+            </div>
+            <div class="halftab">
+                b
+            </div>
+        </div>
+
+        {{!-- Skills Tab --}}
+        <div class="tab description" data-group="primary" data-tab="skills">
+            a
+        </div>
+
+        {{!-- Combat Tab --}}
+        <div class="tab description" data-group="primary" data-tab="combat">
+            a
         </div>
 
         {{!-- Owned Items Tab --}}

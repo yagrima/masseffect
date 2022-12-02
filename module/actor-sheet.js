@@ -15,7 +15,7 @@ export class SimpleActorSheet extends ActorSheet {
       width: 600,
       height: 600,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      scrollY: [".biography", ".items", ".attributes"],
+      scrollY: [ ".attributes", ".items",".biography"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
