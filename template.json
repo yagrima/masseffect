@@ -10,7 +10,7 @@
       "height":""
     },
     "biography": "",
-    "health": {
+    "exhaustion": {
       "value": 10,
       "min": 0,
       "max": 10

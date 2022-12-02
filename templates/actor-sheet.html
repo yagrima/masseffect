@@ -4,7 +4,6 @@
     <header class="sheet-header">
         
         <div class="header-fields">
-
             <div class="resource">
                 <input type="number" name="system.health.value" value="{{systemData.health.value}}"/>
                 <span> / </span>
@@ -40,13 +39,13 @@
                 <label class="spacedlabel" for="name">Name:</label>
                 <input class="spacedbox" name="name" type="text" value="{{data.name}}" placeholder="Dein Charakter hat keinen Namen?" />
                 <label class="spacedlabel" for="race">Rasse:</label>
-                <input class="spacedbox" name="race" type="text" value="{{data.bio.race}}" placeholder="Welche Rasse hatten deine Eltern?" />
+                <input class="spacedbox" name="data.bio.race" type="text" value="{{data.bio.race}}" placeholder="Welche Rasse hatten deine Eltern?" />
                 <label class="spacedlabel" for="origin">Herkunft:</label>
-                <input class="spacedbox" name="origin" type="text" value="{{data.bio.origin}}" placeholder="Wo wurdest du geboren?" />
+                <input class="spacedbox" name="data.bio.origin" type="text" value="{{data.bio.origin}}" placeholder="Wo wurdest du geboren?" />
                 <label class="spacedlabel" for="gender">Alter:</label>
-                <input class="spacedbox" name="gender" type="text" value="{{data.bio.gender}}" placeholder="Wie lange machst du schon Probleme?"/>
+                <input class="spacedbox" name="data.bio.gender" type="text" value="{{data.bio.gender}}" placeholder="Wie lange machst du schon Probleme?"/>
                 <label class="spacedlabel" for="height">Größe und Gewicht:</label>
-                <input class="spacedbox" name="height" type="text" value="{{data.bio.height}}" placeholder=""/>
+                <input class="spacedbox" name="data.bio.height" type="text" value="{{data.bio.height}}" placeholder=""/>
             </div>
             <div class="editortab">
                 Charaktergeschichte:
@@ -63,6 +62,13 @@
                 </div>
                 <div class="halftab">
                     <input class="inputfield" type="number" name="dexterity" min="{{data.attributes.dexterity.min}}" max="{{data.attributes.dexterity.max}}" placeholder="1" value="{{data.attributes.dexterity.current}}">
+                </div>
+                <br><br>
+                <div class="halftab">
+                    <label class="spacedlabel" for="body">Geschick:</label>
+                </div>
+                <div class="halftab">
+                    <input class="inputfield" type="number" name="body" min="{{data.attributes.body.min}}" max="{{data.attributes.body.max}}" placeholder="1" value="{{data.attributes.body.current}}">
                 </div>
             </div>
             <div class="halftab">

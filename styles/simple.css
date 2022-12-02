@@ -22,12 +22,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-bottom: 10px;
-}
-.masseffect .sheet-header .profile-img {
-  flex: 0 0 100px;
-  height: 100px;
-  margin-right: 10px;
-}
+} 
 .masseffect .sheet-header .header-fields {
   flex: 1;
   height: 100px;
