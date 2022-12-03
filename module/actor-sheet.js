@@ -25,35 +25,26 @@ export class SimpleActorSheet extends ActorSheet {
   /** @inheritdoc */
   async getData(options) {
     const context = await super.getData(options);
-    EntitySheetHelper.getAttributeData(context.data);
-    context.systemData = context.data.system;
-    context.dtypes = ATTRIBUTE_TYPES;
-    context.biographyHTML = await TextEditor.enrichHTML(context.systemData.biography, {
-      secrets: this.document.isOwner,
-      async: true
-    });
-    return context;
+    let sheetData = {};
+    sheetData.owner = this.actor.isOwner;
+    sheetData.editable = this.isEditable;
+    sheetData.actor = context.actor;
+    sheetData.data = context.actor.system;
+    sheetData.items = context.items;
+    sheetData.config = CONFIG;
+    sheetData.isGM = game.user.isGM;
+    console.log(sheetData);
+    return sheetData;
   }
 
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
   activateListeners(html) {
     super.activateListeners(html);
-
-    // Everything below here is only needed if the sheet is editable
-    if ( !this.isEditable ) return;
-
-    // Attribute Management
-    html.find(".attributes").on("click", ".attribute-control", EntitySheetHelper.onClickAttributeControl.bind(this));
-    html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
-    html.find(".attributes").on("click", "a.attribute-roll", EntitySheetHelper.onAttributeRoll.bind(this));
-
-    // Item Controls
+    if(this.actor.isOwner){}
+    /* check the rest if sheet is editable */
+    if(!this.isEditable) return;  
     html.find(".item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 
-    // Add draggable for Macro creation
     html.find(".attributes a.attribute-roll").each((i, a) => {
       a.setAttribute("draggable", true);
       a.addEventListener("dragstart", ev => {
@@ -61,9 +52,7 @@ export class SimpleActorSheet extends ActorSheet {
         ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
       }, false);
     });
-  }
-
-  /* -------------------------------------------- */
+}
 
   /**
    * Handle click events for Item control buttons within the Actor Sheet

@@ -21,7 +21,7 @@ import { SimpleToken, SimpleTokenDocument } from "./token.js";
  */
 Hooks.once("init", async function() {
   console.log(`Initializing Simple Mass Effect System`);
-
+  CONFIG.debug.hooks = true;
   /**
    * Set an initiative formula for the system. This will be updated later.
    * @type {String}

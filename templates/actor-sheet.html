@@ -33,23 +33,23 @@
         {{!-- Biography Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
             <div class="lefttab">
-                <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" height="243" width="150" />
+                <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="243" width="150" />
             </div>
             <div class="righttab">
                 <label class="spacedlabel" for="name">Name:</label>
-                <input class="spacedbox" name="name" type="text" value="{{data.name}}" placeholder="Dein Charakter hat keinen Namen?" />
+                <input class="spacedbox" name="name" type="text" value="{{actor.name}}" placeholder="Dein Charakter hat keinen Namen?" />
                 <label class="spacedlabel" for="race">Rasse:</label>
-                <input class="spacedbox" name="data.bio.race" type="text" value="{{data.bio.race}}" placeholder="Welche Rasse hatten deine Eltern?" />
+                <input class="spacedbox" name="bio.race" type="text" value="{{data.bio.race}}" placeholder="Welche Rasse hatten deine Eltern?" />
                 <label class="spacedlabel" for="origin">Herkunft:</label>
-                <input class="spacedbox" name="data.bio.origin" type="text" value="{{data.bio.origin}}" placeholder="Wo wurdest du geboren?" />
+                <input class="spacedbox" name="bio.origin" type="text" value="{{data.bio.origin}}" placeholder="Wo wurdest du geboren?" />
                 <label class="spacedlabel" for="gender">Alter:</label>
-                <input class="spacedbox" name="data.bio.gender" type="text" value="{{data.bio.gender}}" placeholder="Wie lange machst du schon Probleme?"/>
+                <input class="spacedbox" name="bio.age" type="number" value="{{data.bio.age}}" placeholder="Wie lange machst du schon Probleme?"/>
                 <label class="spacedlabel" for="height">Größe und Gewicht:</label>
-                <input class="spacedbox" name="data.bio.height" type="text" value="{{data.bio.height}}" placeholder=""/>
+                <input class="spacedbox" name="bio.height" type="text" value="{{data.bio.height}}" placeholder=""/>
             </div>
             <div class="editortab">
                 Charaktergeschichte:
-                {{editor biographyHTML target="system.biography" button=true editable=editable engine="prosemirror"}}
+                {{editor biographyHTML target="data.system.biography" button=true editable=editable engine="prosemirror"}}
             </div>
         </div>
 
