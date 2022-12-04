@@ -10,26 +10,33 @@ export async function skillCheck(){
 
     const template = "systems/masseffect/templates/skillcheck.html";
     let rollResults = [];
-    for(let i=0;i<normaldice+wilddice;i++){
-        let d6result = await new Roll("1d6",{}).roll({async: true});
-        rollResults[i] = {"diceroll": d6result,"isWild": false};
+    const rollformula = "1d6";
+    for(let i=0;i<normaldice;i++){
+        let d6result = await new Roll(rollformula,{}).roll({async: true});
+        console.log(d6result.total);
+        console.log(d6result.result);
+        rollResults[i] = {"diceroll": d6result.dice[0].values[0],"isWild": false};
+        console.log(rollResults[i])
     }
     for(let i=normaldice;i<normaldice+wilddice;i++){
-        let d6result = await new Roll("1d6",{}).roll({async: true});
-        rollResults[i] = {"diceroll": d6result,"isWild": true};
+        let d6result = await new Roll(rollformula,{}).roll({async: true});
+        console.log(d6result.total);
+        rollResults[i] = {"diceroll": d6result.total,"isWild": true};
+        console.log(rollResults[i])
     }
     console.log(rollResults);
 
     /* checking for successes and fumbles*/
-    isFumble = false;
-    noSuccesses = 0;
-    noFumbleElements = 0;
+    let isFumble = false;
+    let noSuccesses = 0;
+    let noFumbleElements = 0;
     for(let i=0;i<rollResults.length;i++){
         if(rollResults[i].diceroll > 4 || (rollResults[i].dicepool > 3 && rollResults[i].isWild)){
             noSuccesses++;
         } else if (rollResults[i].diceroll = 1 || (rollResults[i].diceroll < 3 && rollResults[i].isWild)){
             noFumbleElements++;
         }
+    }
         if(noFumbleElements >= (normaldice+wilddice)/3){
             isFumble = true;
             if(noSuccesses = 0){
@@ -39,5 +46,4 @@ export async function skillCheck(){
             }
         }
         console.log("Successes: "+noSuccesses);
-    }
 }
