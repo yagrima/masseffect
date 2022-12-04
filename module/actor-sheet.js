@@ -1,3 +1,5 @@
+import * as Dice from "./dice.js";
+
 import { EntitySheetHelper } from "./helper.js";
 import {ATTRIBUTE_TYPES} from "./constants.js";
 
@@ -42,6 +44,7 @@ export class SimpleActorSheet extends ActorSheet {
     if(this.actor.isOwner){}
     /* check the rest if sheet is editable */
     if(!this.isEditable) return;  
+    html.find(".skill-roll").click(this._onSkillRoll.bind(this));
     html.find(".item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 
@@ -52,6 +55,10 @@ export class SimpleActorSheet extends ActorSheet {
         ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
       }, false);
     });
+}
+_onSkillRoll(event) {
+  event.preventDefault();
+  Dice.skillCheck();
 }
 
   /**
