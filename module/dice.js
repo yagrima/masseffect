@@ -11,32 +11,44 @@ export async function skillCheck(){
     const template = "systems/masseffect/templates/skillcheck.html";
     let rollResults = [];
     const rollformula = "1d6";
-    for(let i=0;i<normaldice;i++){
-        let d6result = await new Roll(rollformula,{}).roll({async: true});
-        console.log(d6result.total);
-        console.log(d6result.result);
-        rollResults[i] = {"diceroll": d6result.dice[0].values[0],"isWild": false};
-        console.log(rollResults[i])
-    }
-    for(let i=normaldice;i<normaldice+wilddice;i++){
-        let d6result = await new Roll(rollformula,{}).roll({async: true});
-        console.log(d6result.total);
-        rollResults[i] = {"diceroll": d6result.total,"isWild": true};
-        console.log(rollResults[i])
-    }
-    console.log(rollResults);
-
     /* checking for successes and fumbles*/
     let isFumble = false;
     let noSuccesses = 0;
     let noFumbleElements = 0;
-    for(let i=0;i<rollResults.length;i++){
-        if(rollResults[i].diceroll > 4 || (rollResults[i].dicepool > 3 && rollResults[i].isWild)){
+
+    for(let i=0;i<normaldice;i++){
+        let d6result = await new Roll(rollformula,{}).roll({async: true});
+        let diceresult = d6result.terms[0].results[0].result;
+        console.log("Your dice shows a: "+diceresult);
+        if(diceresult >= 5){
             noSuccesses++;
-        } else if (rollResults[i].diceroll = 1 || (rollResults[i].diceroll < 3 && rollResults[i].isWild)){
+            console.log("+1 Erfolg:" + noSuccesses);
+        } else if (diceresult <= 1) {
             noFumbleElements++;
+            console.log("Rolled a "+diceresult+", glitch more likely, now: "+noFumbleElements);
         }
+        rollResults[i] = {"diceroll": diceresult,"isWild": false}; 
+        console.log(rollResults[i])
+        console.log(rollResults);
     }
+    console.log("~~~ Wild Dice starting here ~~~");
+    for(let i=normaldice;i<normaldice+wilddice;i++){
+        let d6result = await new Roll(rollformula,{}).roll({async: true});
+        let diceresult = d6result.terms[0].results[0].result;
+        console.log("Your dice shows a: "+diceresult);
+        if(diceresult >= 4){
+            noSuccesses++;
+            console.log("+1 Erfolg:" + noSuccesses);
+        } else if (diceresult <= 2) {
+            noFumbleElements++;
+            console.log("Rolled a "+diceresult+", glitch more likely, now: "+noFumbleElements);
+        }
+        rollResults[i] = {"diceroll": diceresult,"isWild": true}; 
+        console.log(rollResults[i])
+        console.log(rollResults);
+    }
+    /*console.log(rollResults);*/
+
         if(noFumbleElements >= (normaldice+wilddice)/3){
             isFumble = true;
             if(noSuccesses = 0){
