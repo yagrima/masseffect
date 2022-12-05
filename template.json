@@ -9,17 +9,6 @@
       "age": 0,
       "height":""
     },
-    "biography": "",
-    "exhaustion": {
-      "value": 10,
-      "min": 0,
-      "max": 10
-    },
-    "power": {
-      "value": 5,
-      "min": 0,
-      "max": 5
-    },
     "attributes": {
       "dexterity": {
         "min": 1,
@@ -33,6 +22,17 @@
       "brains": 1,
       "personality": 1,
       "tech": 1
+    },
+    "biography": "",
+    "exhaustion": {
+      "value": 10,
+      "min": 0,
+      "max": 10
+    },
+    "power": {
+      "value": 5,
+      "min": 0,
+      "max": 5
     },
     "groups": {}
   }

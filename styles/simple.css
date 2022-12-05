@@ -113,6 +113,7 @@
 .masseffect .editor-content {
   padding: 5px;
   height: 100%;
+  min-height: 100px;
 }
 .masseffect .item-list {
   list-style: none;

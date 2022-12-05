@@ -1,6 +1,4 @@
 import * as Dice from "./dice.js";
-
-import { EntitySheetHelper } from "./helper.js";
 import {ATTRIBUTE_TYPES} from "./constants.js";
 
 /**
@@ -107,10 +105,9 @@ _onSkillRoll(event) {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _getSubmitData(updateData) {
+  /*_getSubmitData(updateData) {
     let formData = super._getSubmitData(updateData);
     formData = EntitySheetHelper.updateAttributes(formData, this.object);
     formData = EntitySheetHelper.updateGroups(formData, this.object);
-    return formData;
-  }
+    */
 }
