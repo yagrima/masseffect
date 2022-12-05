@@ -1,61 +1,71 @@
 import * as Dialog from "./dialog.js";
 
 /* first variant without arguments */
-export async function skillCheck(){
+export async function skillCheck(actor){
     let checkOptions = await Dialog.GetSkillCheckOptions();
     if(checkOptions.cancelled) return;
     let normaldice = checkOptions.normaldice;
-    let wilddice = checkOptions.wilddice;
-    console.log("Würfelpool:"+normaldice+" + "+wilddice);
+    let wilddice = checkOptions.wilddice; 
 
     const template = "systems/masseffect/templates/skillcheck.html";
     let rollResults = [];
     const rollformula = "1d6";
-    /* checking for successes and fumbles*/
     let isFumble = false;
+    let isCritical = false;
     let noSuccesses = 0;
     let noFumbleElements = 0;
 
+    /* normal dice succeed at 5,6 and add to complications on 1*/
     for(let i=0;i<normaldice;i++){
         let d6result = await new Roll(rollformula,{}).roll({async: true});
         let diceresult = d6result.terms[0].results[0].result;
-        console.log("Your dice shows a: "+diceresult);
         if(diceresult >= 5){
             noSuccesses++;
-            console.log("+1 Erfolg:" + noSuccesses);
         } else if (diceresult <= 1) {
             noFumbleElements++;
-            console.log("Rolled a "+diceresult+", glitch more likely, now: "+noFumbleElements);
         }
         rollResults[i] = {"diceroll": diceresult,"isWild": false}; 
-        console.log(rollResults[i])
-        console.log(rollResults);
+        
     }
-    console.log("~~~ Wild Dice starting here ~~~");
+    /* wild dice succeed at 4,5,6 and add to complications on 1,2*/
     for(let i=normaldice;i<normaldice+wilddice;i++){
         let d6result = await new Roll(rollformula,{}).roll({async: true});
         let diceresult = d6result.terms[0].results[0].result;
-        console.log("Your dice shows a: "+diceresult);
         if(diceresult >= 4){
             noSuccesses++;
-            console.log("+1 Erfolg:" + noSuccesses);
         } else if (diceresult <= 2) {
             noFumbleElements++;
-            console.log("Rolled a "+diceresult+", glitch more likely, now: "+noFumbleElements);
         }
         rollResults[i] = {"diceroll": diceresult,"isWild": true}; 
-        console.log(rollResults[i])
-        console.log(rollResults);
     }
-    /*console.log(rollResults);*/
+    console.log(rollResults);
+    console.log(normaldice+wilddice+" dice with "+noSuccesses+" successes and "+noFumbleElements+" dice with potential to fumble.");
 
-        if(noFumbleElements >= (normaldice+wilddice)/3){
-            isFumble = true;
-            if(noSuccesses = 0){
-                console.log("Critical Failure!")
-            } else {
-                console.log("Fumble!")
-            }
+    /* if a third of the dice adds to potential fumbles, the roll has fumbled
+        if there are no successes in addition, it is a critical failure*/
+    if(noFumbleElements >= (normaldice+wilddice)/3){
+        isFumble = true;
+        if(noSuccesses = 0){
+            isCritical = True;
+            console.log("Critical Failure!")
+        } else {
+            console.log("Fumble!")
         }
-        console.log("Successes: "+noSuccesses);
+    }
+
+    /* do chat output*/
+    let templateContext = {
+        rollResults: rollResults,
+        noSuccesses: noSuccesses,
+        isFumble: isFumble,
+        isCritical: isCritical
+    }
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({actor}),
+        roll: rollResults, /*?*/
+        sound: CONFIG.sounds.dice,
+        content: await renderTemplate(template,templateContext)
+    }
+    console.log(chatData);
 }

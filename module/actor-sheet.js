@@ -58,7 +58,7 @@ export class SimpleActorSheet extends ActorSheet {
 }
 _onSkillRoll(event) {
   event.preventDefault();
-  Dice.skillCheck();
+  Dice.skillCheck(this.actor);
 }
 
   /**

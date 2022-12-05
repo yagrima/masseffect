@@ -4,7 +4,15 @@
     </div>
     {{#if isFumble}}
     <div>
-        Komplikation oder schlimmer!
+        Komplikation
     </div>
     {{/if}}
+    {{#if isCritical}}
+    <div>
+        Kritischer Patzer
+    </div>
+    {{/if}}
+    <div>
+        {{rollResults}}
+    </div>
 </div>
