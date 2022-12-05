@@ -25,7 +25,7 @@ export async function skillCheck(actor){
         } else if (diceresult <= 1) {
             noFumbleElements++;
         }
-        rollResults[i] = {"diceroll": diceresult,"isWild": false}; 
+        rollResults[i] = {"diceroll": diceresult.toString(),"isWild": false}; 
         
     }
     /* wild dice succeed at 4,5,6 and add to complications on 1,2*/
@@ -37,7 +37,7 @@ export async function skillCheck(actor){
         } else if (diceresult <= 2) {
             noFumbleElements++;
         }
-        rollResults[i] = {"diceroll": diceresult.toString,"isWild": true}; 
+        rollResults[i] = {"diceroll": diceresult.toString(),"isWild": true}; 
     }
     console.log(rollResults);
     console.log(normaldice+wilddice+" dice with "+noSuccesses+" successes and "+noFumbleElements+" dice with potential to fumble.");

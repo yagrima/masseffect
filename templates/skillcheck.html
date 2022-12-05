@@ -1,17 +1,22 @@
 <div class="masseffect chat message">
     {{#each rollResults}}
     <div style="display: inline-block;">
-        {{#if isWild}}  
-            {{#switch diceroll}}
-                {{#case '1'}} {{/case}}
-                {{#case '2'}} {{/case}}
-                {{#case '3'}} {{/case}}
-                {{#case '4'}} {{/case}}
-                {{#case '5'}} {{/case}}
-                {{#case '6'}} {{/case}}
-        {{else}}
-            {{diceroll}}
+        {{#if isWild}}   
+            {{#if (eq diceroll "1")}} <img src="systems/masseffect/img/Wild_1.svg" width="24" height="24" style="border:none;"/> {{/if}}
+            {{#if (eq diceroll "2")}} <img src="systems/masseffect/img/Wild_2.svg" width="24" height="24" style="border:none;"/> {{/if}}
+            {{#if (eq diceroll "3")}} <img src="systems/masseffect/img/Wild_3.svg" width="24" height="24" style="border:none;"/> {{/if}}
+            {{#if (eq diceroll "4")}} <img src="systems/masseffect/img/Wild_4.svg" width="24" height="24" style="border:none;"/> {{/if}}
+            {{#if (eq diceroll "5")}} <img src="systems/masseffect/img/Wild_5.svg" width="24" height="24" style="border:none;"/> {{/if}}
+            {{#if (eq diceroll "6")}} <img src="systems/masseffect/img/Wild_6.svg" width="24" height="24" style="border:none;"/> {{/if}}
         {{/if}}
+        {{#unless isWild}}
+            {{#if (eq diceroll "1")}} <img src="systems/masseffect/img/D6_1.svg" width="24" height="24" style="border:none;"/> {{/if}}
+            {{#if (eq diceroll "2")}} <img src="systems/masseffect/img/D6_2.svg" width="24" height="24" style="border:none;"/> {{/if}}
+            {{#if (eq diceroll "3")}} <img src="systems/masseffect/img/D6_3.svg" width="24" height="24" style="border:none;"/> {{/if}}
+            {{#if (eq diceroll "4")}} <img src="systems/masseffect/img/D6_4.svg" width="24" height="24" style="border:none;"/> {{/if}}
+            {{#if (eq diceroll "5")}} <img src="systems/masseffect/img/D6_5.svg" width="24" height="24" style="border:none;"/> {{/if}}
+            {{#if (eq diceroll "6")}} <img src="systems/masseffect/img/D6_6.svg" width="24" height="24" style="border:none;"/> {{/if}}
+        {{/unless}}
     </div>
     {{/each}}
     <div>
