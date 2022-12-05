@@ -9,6 +9,7 @@ export async function skillCheck(actor){
 
     const template = "systems/masseffect/templates/skillcheck.html";
     let rollResults = [];
+    let d6result = null;
     const rollformula = "1d6";
     let isFumble = false;
     let isCritical = false;
@@ -17,7 +18,7 @@ export async function skillCheck(actor){
 
     /* normal dice succeed at 5,6 and add to complications on 1*/
     for(let i=0;i<normaldice;i++){
-        let d6result = await new Roll(rollformula,{}).roll({async: true});
+        d6result = await new Roll(rollformula,{}).roll({async: true});
         let diceresult = d6result.terms[0].results[0].result;
         if(diceresult >= 5){
             noSuccesses++;
@@ -29,14 +30,14 @@ export async function skillCheck(actor){
     }
     /* wild dice succeed at 4,5,6 and add to complications on 1,2*/
     for(let i=normaldice;i<normaldice+wilddice;i++){
-        let d6result = await new Roll(rollformula,{}).roll({async: true});
+        d6result = await new Roll(rollformula,{}).roll({async: true});
         let diceresult = d6result.terms[0].results[0].result;
         if(diceresult >= 4){
             noSuccesses++;
         } else if (diceresult <= 2) {
             noFumbleElements++;
         }
-        rollResults[i] = {"diceroll": diceresult,"isWild": true}; 
+        rollResults[i] = {"diceroll": diceresult.toString,"isWild": true}; 
     }
     console.log(rollResults);
     console.log(normaldice+wilddice+" dice with "+noSuccesses+" successes and "+noFumbleElements+" dice with potential to fumble.");
@@ -45,8 +46,8 @@ export async function skillCheck(actor){
         if there are no successes in addition, it is a critical failure*/
     if(noFumbleElements >= (normaldice+wilddice)/3){
         isFumble = true;
-        if(noSuccesses = 0){
-            isCritical = True;
+        if(noSuccesses <= 0){
+            isCritical = true;
             console.log("Critical Failure!")
         } else {
             console.log("Fumble!")
@@ -55,6 +56,7 @@ export async function skillCheck(actor){
 
     /* do chat output*/
     let templateContext = {
+        d6result: rollResults[0],
         rollResults: rollResults,
         noSuccesses: noSuccesses,
         isFumble: isFumble,
@@ -63,9 +65,11 @@ export async function skillCheck(actor){
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({actor}),
-        roll: rollResults, /*?*/
+        roll: d6result, /*?*/
         sound: CONFIG.sounds.dice,
         content: await renderTemplate(template,templateContext)
     }
-    console.log(chatData);
+    console.log(templateContext);
+    console.log(chatData.content);
+    ChatMessage.create(chatData);
 }

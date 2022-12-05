@@ -1,18 +1,31 @@
 <div class="masseffect chat message">
+    {{#each rollResults}}
+    <div style="display: inline-block;">
+        {{#if isWild}}  
+            {{#switch diceroll}}
+                {{#case '1'}} {{/case}}
+                {{#case '2'}} {{/case}}
+                {{#case '3'}} {{/case}}
+                {{#case '4'}} {{/case}}
+                {{#case '5'}} {{/case}}
+                {{#case '6'}} {{/case}}
+        {{else}}
+            {{diceroll}}
+        {{/if}}
+    </div>
+    {{/each}}
     <div>
         {{noSuccesses}} Erfolge!
     </div>
     {{#if isFumble}}
-    <div>
-        Komplikation
-    </div>
+        {{#if isCritical}}
+            <div>
+                Kritischer Patzer
+            </div>
+        {{else}}
+            <div>
+                Komplikation
+            </div>
+        {{/if}}
     {{/if}}
-    {{#if isCritical}}
-    <div>
-        Kritischer Patzer
-    </div>
-    {{/if}}
-    <div>
-        {{rollResults}}
-    </div>
 </div>
