@@ -1,5 +1,7 @@
 {
     "masseffect.chat.cancel": "Abbrechen",
     "masseffect.chat.generictest": "Allgemeiner Würfelwurf",
-    "masseffect.chat.roll": "Würfeln"
+    "masseffect.chat.roll": "Würfeln",
+    "masseffect.woundMalus": "Wundabzüge",
+  "masseffect.derivedAttribute.healthpoints": "Lebenspunkte"
   }

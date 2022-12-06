@@ -2,25 +2,49 @@
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        
-        <div class="header-fields">
-            <div class="resource">
-                <input type="number" name="system.health.value" value="{{systemData.health.value}}"/>
-                <span> / </span>
-                <input type="number" name="system.health.max" value="{{systemData.health.max}}"/>
+        <div class="fullwidth">
+            <div class="halftab">Lebenspunkte</div>
+            <div class="halftab"><hr></div>
+        </div>
+        <div class="fullwidth">
+            <div class="halftab">Ausrüstungspunkte</div>
+            <div class="halftab"><hr></div>
+        </div>
+        <div class="fullwidth">
+            <div class="halftab">Kraftpunkte</div>
+            <div class="halftab"><hr></div>
+        </div>
+        <div class="fullwidth">
+            <div class="halftab">Kampfpool</div>
+            <div class="halftab"><hr></div>
+        </div>
+        <div class="fullwidth">
+            <div class="borderbox">
+                Erinnerung 
+                <input class="invisiblebox" type="number" name="system.derivedAttributes.memory" value="{{data.derivedAttributes.memory}}">
             </div>
-            <div class="resource">
-                <input type="number" name="system.power.value" value="{{systemData.power.value}}"/>
-                <span> / </span>
-                <input type="number" name="system.power.max" value="{{systemData.power.max}}"/>
+            <div class="borderbox">
+                Heben/Tragen
+                <input class="invisiblebox" type="number" name="system.derivedAttributes.liftcarry" value="{{data.derivedAttributes.liftcarry}}">
+            </div>
+            <div class="borderbox">
+                Einschätzen
+                <input class="invisiblebox" type="number" name="system.derivedAttributes.composure" value="{{data.derivedAttributes.composure}}">
+            </div>
+            <div class="borderbox">
+                Initiative
+                <input class="invisibleinibox" type="text" name="system.derivedAttributes.initiative" value="{{data.derivedAttributes.initiative}}">
+            </div>
+            <div class="borderbox">
+                Verteidigung
+                <input class="invisiblebox" type="number" name="system.derivedAttributes.defense" value="{{data.derivedAttributes.defense}}">
             </div>
         </div>
     </header>
-
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Kurzbio</a>
-        <a class="item" data-tab="attributes">Attribute</a>
+        <a class="item" data-tab="attributes">Allgemeines</a>
         <a class="item" data-tab="skills">Fertigkeiten</a>
         <a class="item" data-tab="combat">Kampf</a>
         <a class="item" data-tab="items">Ausrüstung</a>
@@ -55,25 +79,108 @@
 
         {{!-- Attributes Tab --}}
         <div class="tab description" data-group="primary" data-tab="attributes">
-            <div class="halftab">
-                <br>
-                <div class="halftab">
-                    <label class="spacedlabel" for="system.attributes.dexterity">Geschick:</label>
+            <div class="thirdtab">
+                <div class="borderheadline">Attribute</div>
+                <hr class="lowmargin">
+                <div class="threequartertab">
+                    <label class="spacedlabel" for="system.attributes.dexterity.current">Geschick</label>
                 </div>
-                <div class="halftab">
-                    <input class="inputfield" type="number" name="system.attributes.dexterity.current" min="{{data.attributes.dexterity.min}}" max="{{data.attributes.dexterity.max}}" placeholder="1" value="{{data.attributes.dexterity.current}}">
+                <div class="quartertab">
+                    <input class="inputfield" type="number" name="system.attributes.dexterity.current" value="{{data.attributes.dexterity.current}}">
                 </div>
-                <br><br>
-                <div class="halftab">
-                    <label class="spacedlabel" for="body">Geschick:</label>
+                <hr class="lowmargin">
+                <div class="threequartertab">
+                    <label class="spacedlabel" for="system.attributes.body.current">Körper</label>
                 </div>
-                <div class="halftab">
-                    <input class="inputfield" type="number" name="body" min="{{data.attributes.body.min}}" max="{{data.attributes.body.max}}" placeholder="1" value="{{data.attributes.body.current}}">
+                <div class="quartertab">
+                    <input class="inputfield" type="number" name="system.attributes.body.current" value="{{data.attributes.body.current}}">
+                </div>
+                <hr class="lowmargin">
+                <div class="threequartertab">
+                    <label class="spacedlabel" for="system.attributes.size.current">Größe</label>
+                </div>
+                <div class="quartertab">
+                    <input class="inputfield" type="number" name="system.attributes.size.current" value="{{data.attributes.size.current}}">
+                </div>
+                <hr class="lowmargin">
+                <div class="threequartertab">
+                    <label class="spacedlabel" for="system.attributes.reflexes.current">Reflexe</label>
+                </div>
+                <div class="quartertab">
+                    <input class="inputfield" type="number" name="system.attributes.reflexes.current" value="{{data.attributes.reflexes.current}}">
+                </div>
+                <hr class="lowmargin">
+                <div class="threequartertab">
+                    <label class="spacedlabel" for="system.attributes.luck.current">Glück</label>
+                </div>
+                <div class="quartertab">
+                    <input class="inputfield" type="number" name="system.attributes.luck.current" value="{{data.attributes.luck.current}}">
+                </div>
+                <hr class="lowmargin">
+                <div class="threequartertab">
+                    <label class="spacedlabel" for="system.attributes.brains.current">Kognition</label>
+                </div>
+                <div class="quartertab">
+                    <input class="inputfield" type="number" name="system.attributes.brains.current" value="{{data.attributes.brains.current}}">
+                </div>
+                <hr class="lowmargin">
+                <div class="threequartertab">
+                    <label class="spacedlabel" for="system.attributes.personality.current">Persönlichkeit</label>
+                </div>
+                <div class="quartertab">
+                    <input class="inputfield" type="number" name="system.attributes.personality.current" value="{{data.attributes.personality.current}}">
+                </div>
+                <hr class="lowmargin">
+                <div class="threequartertab">
+                    <label class="spacedlabel" for="system.attributes.tech.current">Tech</label>
+                </div>
+                <div class="quartertab">
+                    <input class="inputfield" type="number" name="system.attributes.tech.current" value="{{data.attributes.tech.current}}">
                 </div>
             </div>
-            <div class="halftab">
-                b
+            <div class="thirdtab">
+                <div class="borderheadline">Vorteile</div>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.advantages.other.advantage1" value="{{data.advantages.other.advantage1}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.advantages.other.advantage2" value="{{data.advantages.other.advantage2}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.advantages.other.advantage3" value="{{data.advantages.other.advantage3}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.advantages.other.advantage4" value="{{data.advantages.other.advantage4}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.advantages.other.advantage5" value="{{data.advantages.other.advantage5}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.advantages.other.advantage6" value="{{data.advantages.other.advantage6}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.advantages.other.advantage7" value="{{data.advantages.other.advantage7}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.advantages.other.advantage8" value="{{data.advantages.other.advantage8}}"/>
             </div>
+            <div class="thirdtab">
+                <div class="borderheadline">Nachteile</div>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.disadvantages.other.advantage1" value="{{data.disadvantages.other.advantage1}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.disadvantages.other.advantage2" value="{{data.disadvantages.other.advantage2}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.disadvantages.other.advantage3" value="{{data.disadvantages.other.advantage3}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.disadvantages.other.advantage4" value="{{data.disadvantages.other.advantage4}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.disadvantages.other.advantage5" value="{{data.disadvantages.other.advantage5}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.disadvantages.other.advantage6" value="{{data.disadvantages.other.advantage6}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.disadvantages.other.advantage7" value="{{data.disadvantages.other.advantage7}}"/>
+                <hr class="lowmargin">
+                <input class="advantagefield" type="text" name="system.disadvantages.other.advantage8" value="{{data.disadvantages.other.advantage8}}"/>
+            </div>
+            <hr>
+            <div class="thirdtab">Talente</div>
+            <div class="thirdtab">Unterschlupf</div>
+            <div class="thirdtab">Kontakte</div>
+            <hr>
         </div>
 
         {{!-- Skills Tab --}}

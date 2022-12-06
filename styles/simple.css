@@ -1,6 +1,10 @@
 .center {
   text-align: center;
 }
+hr.lowmargin {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
 .masseffect {
   /* Sheet Tabs */
   /* Items List */
@@ -9,53 +13,57 @@
 .masseffect .window-content {
   height: 100%;
   padding: 5px;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 .masseffect form {
   height: 100%;
 }
+.masseffect .fullwidth {
+  min-width: 500px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.masseffect .halftab {
+  width: 49%;
+  display: inline-block;
+}
 .masseffect .sheet-header {
-  flex: 0 0 100px;
+  flex: 0 0 90px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 } 
-.masseffect .sheet-header .header-fields {
-  flex: 1;
-  height: 100px;
-}
-.masseffect .sheet-header h1.charname {
-  height: 50px;
-  padding: 0px;
-  margin: 5px 0;
-  border-bottom: 0;
-}
-.masseffect .sheet-header h1.charname input {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-.masseffect .resource {
-  width: 50%;
-  height: 40px;
-  margin-top: 10px;
-  float: left;
+.masseffect .sheet-header .borderbox {
+  display: inline-block;
   text-align: center;
-}
-.masseffect .resource input {
-  width: 100px;
-  height: 28px;
-}
+  width: 19%;
+} 
+.masseffect .sheet-header .invisiblebox {
+  background: transparent;
+  border: 0px;
+  height: 17px;
+  text-align: center;
+  width: 5px;
+} 
+.masseffect .sheet-header .invisibleinibox {
+  background: transparent;
+  border: 0px;
+  height: 17px;
+  padding: 1px;
+  text-align: center;
+  width: 45px;
+} 
 .masseffect .tabs {
-  flex: 0 0 40px;
+  flex: 0 0 20px;
   border-top: 1px solid #AAA;
   border-bottom: 1px solid #AAA;
 }
 .masseffect .tabs .item {
-  line-height: 40px;
+  line-height: 20px;
   font-weight: bold;
 }
 .masseffect .tabs .item.active {
@@ -90,12 +98,22 @@
   width: 9%;
   display: inline-block;
 }
+.masseffect .sheet-body .tab .quartertab {
+  width: 24%;
+  display: inline-block;
+}
 .masseffect .sheet-body .tab .thirtytab {
   width: 29%;
   display: inline-block;
 }
-.masseffect .sheet-body .tab .halftab {
-  width: 49%;
+.masseffect .sheet-body .tab .thirdtab {
+  display: inline-block;
+  vertical-align: top;
+  width: 32%;
+}
+
+.masseffect .sheet-body .tab .threequartertab {
+  width: 74%;
   display: inline-block;
 }
 .masseffect .sheet-body .tab .background {
@@ -105,10 +123,24 @@
 .masseffect .sheet-body .tab .inputfield {
   border: 0px;
   font-weight: bold;
-  margin-right: 15px;
   text-align: center;
-  width: 25%;
+  height: 17px;
 }
+.masseffect .sheet-body .tab .advantagefield {
+  border: 0px;
+  text-align: left;
+  height: 17px;
+  width: 90%;
+  padding-left: 10px;
+}
+.masseffect .sheet-body .tab .borderheadline {
+  border: 1px;
+  font-weight: bold;
+  text-align: left;
+  vertical-align: top;
+  width: 100%;
+}
+
 .masseffect .editor,
 .masseffect .editor-content {
   padding: 5px;

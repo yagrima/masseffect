@@ -105,9 +105,8 @@ _onSkillRoll(event) {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  /*_getSubmitData(updateData) {
+  _getSubmitData(updateData) {
     let formData = super._getSubmitData(updateData);
-    formData = EntitySheetHelper.updateAttributes(formData, this.object);
-    formData = EntitySheetHelper.updateGroups(formData, this.object);
-    */
+    return formData;
+  }
 }

@@ -1,5 +1,7 @@
 {
   "masseffect.chat.cancel": "Cancel",
   "masseffect.chat.generictest": "Generic Dice Roll",
-  "masseffect.chat.roll": "Roll"
+  "masseffect.chat.roll": "Roll",
+  "masseffect.woundMalus": "Wundabzüge",
+  "masseffect.derivedAttribute.healthpoints": "Lebenspunkte"
 }

@@ -11,23 +11,76 @@
     },
     "attributes": {
       "dexterity": {
-        "min": 1,
-        "max": 6,
         "current": 3
       },
-      "size": 1,
-      "body": 1,
-      "reflexes": 1,
-      "luck": 1,
-      "brains": 1,
-      "personality": 1,
-      "tech": 1
+      "size": {
+        "current": 3
+      },
+      "body": {
+        "current": 3
+      },
+      "reflexes": {
+        "current": 3
+      },
+      "luck": {
+        "current": 3
+      },
+      "brains": {
+        "current": 3
+      },
+      "personality": {
+        "current": 3
+      },
+      "tech": {
+        "current": 3
+      }
+    },
+    "derivedAttributes": {
+      "memory": 8,
+      "liftcarry": 8,
+      "composure": 8,
+      "movement": 6,
+      "implantcap": 5,
+      "initiative": "2d6-5",
+      "range": 2,
+      "carrycap": 6,
+      "defense": 2
     },
     "biography": "",
-    "exhaustion": {
-      "value": 10,
+    "advantages": {
+      "racial": {
+
+      },
+      "other": {
+        "advantage1": "",
+        "advantage2": "",
+        "advantage3": "",
+        "advantage4": "",
+        "advantage5": "",
+        "advantage6": "",
+        "advantage7": "",
+        "advantage8": ""
+      }
+    },
+    "disadvantages": {
+      "racial": {
+
+      },
+      "other": {
+        "disadvantage1": "",
+        "disadvantage2": "",
+        "disadvantage3": "",
+        "disadvantage4": "",
+        "disadvantage5": "",
+        "disadvantage6": "",
+        "disadvantage7": "",
+        "disadvantage8": ""
+      }
+    },
+    "health": {
+      "value": 30,
       "min": 0,
-      "max": 10
+      "max": 30
     },
     "power": {
       "value": 5,
