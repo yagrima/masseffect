@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'masseffect';
+  src: url('me123.ttf'),
+        format('truetype');
+}
+@font-face{
+  font-family: 'me2';
+  src: url('slider.ttf'),
+  format('truetype');
+}
 .center {
   text-align: center;
 }
@@ -6,6 +16,7 @@ hr.lowmargin {
   margin-bottom: 2px;
 }
 .masseffect {
+  font-family: 'masseffect';
   /* Sheet Tabs */
   /* Items List */
   /* Attributes */
