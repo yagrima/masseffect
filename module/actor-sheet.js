@@ -33,16 +33,61 @@ export class SimpleActorSheet extends ActorSheet {
     sheetData.items = context.items;
     sheetData.config = CONFIG;
     sheetData.isGM = game.user.isGM;
-    console.log(sheetData);
+    console.log(sheetData.data);
+    /*calculate derived attributes*/
+    let attributes = sheetData.data.attributes;
+    let derived = sheetData.data.derivedAttributes;
+    derived.memory = Math.round(attributes.brains.current + attributes.tech.current + attributes.luck.current/2);
+    derived.liftcarry = Math.round(attributes.body.current + attributes.size.current + attributes.luck.current/2);
+    derived.composure = Math.round(attributes.brains.current + attributes.personality.current + attributes.luck.current/2);
+    /*initiative calculation, check for several (dis)advantages and talents*/
+    derived.initiative = this._calculateInitiative(sheetData);
+    derived.defense = this._calculateDefense(sheetData);
+    console.log(derived.initiative);
     return sheetData;
   }
-
+  _calculateDefense(sheetData) {
+    let attributes = sheetData.data.attributes;
+    return Math.round((attributes.body.current+attributes.reflexes.current+attributes.luck.current-attributes.size.current/2)/3);
+  }
+  _calculateInitiative(sheetData) {
+    let attributes = sheetData.data.attributes;
+    let isSlow = false;
+    let isColdBlooded = false;
+    let isImpulsive = false;
+    let hasLightningReflexes = false;
+    for(let a in sheetData.data.disadvantages.other){
+      if(sheetData.data.disadvantages.other[a] == "Langsam") {
+        isSlow = true;
+      }
+      if(sheetData.data.disadvantages.other[a] == "Impulsiv") {
+        isImpulsive = true;
+      }
+    }
+    for(let a in sheetData.data.advantages.other){
+      if(sheetData.data.advantages.other[a] == "Blitzreflexe") {
+        hasLightningReflexes = true;
+      }
+    }
+    for(let a in sheetData.data.combattalents){
+      if(sheetData.data.combattalents[a] == "Kühler Kopf") {
+        isColdBlooded = true;
+      } continue;
+    }
+    /*console.log("Langsam: "+isSlow+", Kühler Kopf: "+isColdBlooded+", Impulsiv: "+isImpulsive+", Blitzreflexe: "+hasLightningReflexes);*/
+    let inimod = isColdBlooded ? Math.round(attributes.brains.current+ attributes.luck.current/2) : Math.round(attributes.reflexes.current+ attributes.luck.current/2);
+    inimod -= hasLightningReflexes ? 2 : 0 ;
+    inimod -= isImpulsive ? 2 : 0 ;
+    /*console.log(inimod);*/
+    return isSlow ? "3d6-"+inimod : "2d6-"+inimod;
+  }
   activateListeners(html) {
     super.activateListeners(html);
     if(this.actor.isOwner){}
     /* check the rest if sheet is editable */
     if(!this.isEditable) return;  
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
+    html.find(".inputfield").onC
     html.find(".item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 

@@ -49,7 +49,6 @@
     "biography": "",
     "advantages": {
       "racial": {
-
       },
       "other": {
         "advantage1": "",
@@ -77,6 +76,46 @@
         "disadvantage8": ""
       }
     },
+    "talents": { 
+        "talent1": "",
+        "talent2": "",
+        "talent3": "",
+        "talent4": "",
+        "talent5": "",
+        "talent6": "",
+        "talent7": "",
+        "talent8": ""
+    },
+    "socialtalents": { 
+      "socialtalent1": "",
+      "socialtalent2": "",
+      "socialtalent3": "",
+      "socialtalent4": "",
+      "socialtalent5": "",
+      "socialtalent6": "",
+      "socialtalent7": "",
+      "socialtalent8": ""
+  },
+    "combattalents": { 
+      "combattalent1": "",
+      "combattalent2": "",
+      "combattalent3": "",
+      "combattalent4": "",
+      "combattalent5": "",
+      "combattalent6": "",
+      "combattalent7": "",
+      "combattalent8": ""
+  },
+  "powertalents": { 
+    "powertalent1": "",
+    "powertalent2": "",
+    "powertalent3": "",
+    "powertalent4": "",
+    "powertalent5": "",
+    "powertalent6": "",
+    "powertalent7": "",
+    "powertalent8": ""
+},
     "health": {
       "value": 30,
       "min": 0,
