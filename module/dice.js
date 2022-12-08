@@ -1,16 +1,20 @@
 import * as Dialog from "./dialog.js";
 
+
 /*with skill input*/
-export async function skillCheck(actor){
-    let checkOptions = await Dialog.GetSkillCheckOptions();
+export async function skillCheck(actor,name,normal,wild){
+    return doDiceMagic(actor,actor.system.diceroll.normaldice,actor.system.diceroll.wilddice,name);
 }
+
 /* first variant without arguments */
 export async function genericCheck(actor){
     let checkOptions = await Dialog.GetSkillCheckOptions();
     if(checkOptions.cancelled) return;
-    let normaldice = checkOptions.normaldice;
-    let wilddice = checkOptions.wilddice; 
+    return doDiceMagic(actor,checkOptions.normaldice,checkOptions.wilddice,game.i18n.localize("masseffect.genericdiceroll"));
+}
 
+export async function doDiceMagic(actor,normaldice,wilddice,name){
+    console.log("initial check: "+normaldice+","+wilddice+", "+name);
     const template = "systems/masseffect/templates/skillcheck.html";
     let rollResults = [];
     let d6result = null;
@@ -19,7 +23,7 @@ export async function genericCheck(actor){
     let isCritical = false;
     let noSuccesses = 0;
     let noFumbleElements = 0;
-
+    
     /* normal dice succeed at 5,6 and add to complications on 1*/
     for(let i=0;i<normaldice;i++){
         d6result = await new Roll(rollformula,{}).roll({async: true});
@@ -45,9 +49,9 @@ export async function genericCheck(actor){
     }
     console.log(rollResults);
     console.log(normaldice+wilddice+" dice with "+noSuccesses+" successes and "+noFumbleElements+" dice with potential to fumble.");
-
+    
     /* if a third of the dice adds to potential fumbles, the roll has fumbled
-        if there are no successes in addition, it is a critical failure*/
+    if there are no successes in addition, it is a critical failure*/
     if(noFumbleElements >= (normaldice+wilddice)/3){
         isFumble = true;
         if(noSuccesses <= 0){
@@ -57,9 +61,10 @@ export async function genericCheck(actor){
             console.log("Fumble!")
         }
     }
-
+    
     /* do chat output*/
     let templateContext = {
+        name: name,
         d6result: rollResults[0],
         rollResults: rollResults,
         noSuccesses: noSuccesses,
@@ -74,6 +79,6 @@ export async function genericCheck(actor){
         content: await renderTemplate(template,templateContext)
     }
     console.log(templateContext);
-    console.log(chatData.content);
+    console.log("HTML Preview: "+chatData.content);
     ChatMessage.create(chatData);
 }

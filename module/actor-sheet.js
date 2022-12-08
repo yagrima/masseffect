@@ -115,15 +115,11 @@ _onGenericRoll(event) {
 }
 _onSkillRoll(event) {
   event.preventDefault();
-  let element = event.currentTarget;
-  let droll = this.actor.system.diceroll;
-  droll.name = element.closest(".rollitem").dataset.name;
-  console.log(droll.name);
-  droll.normal = element.closest(".rollitem").dataset.normaldice;
-  console.log(droll.normal);
-  droll.wild = element.closest(".rollitem").dataset.wilddice;
-  console.log(droll.wild);
-  Dice.skillCheck(this.actor);
+  let element = event.currentTarget.closest(".rollitem").dataset;
+  let name = element.name;
+  let normal = element.normaldice;
+  let wild = element.wilddice;
+  Dice.skillCheck(this.actor,name,normal,wild);
 }
 
   /**
