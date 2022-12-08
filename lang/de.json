@@ -10,6 +10,8 @@
   "masseffect.chat.cancel": "Abbrechen",
   "masseffect.chat.generictest": "Allgemeiner Würfelwurf",
   "masseffect.chat.roll": "Würfeln",
+  "masseffect.derivedAttribute.healthpoints": "Lebenspunkte",
+  "masseffect.normaldice": "normale Würfel",
   "masseffect.skills.athletics": "Athletik",
   "masseffect.skills.mining": "Bergbau",
   "masseffect.skills.biotics": "Biotik",
@@ -32,5 +34,5 @@
   "masseffect.skills.performance": "Vorführung",
   "masseffect.skills.science": "Wissenschaft",
   "masseffect.skills.perception": "Wahrnehmung",
-  "masseffect.derivedAttribute.healthpoints": "Lebenspunkte"
+  "masseffect.wilddice": "Schicksalswürfel"
   }

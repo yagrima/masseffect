@@ -28,7 +28,7 @@ Hooks.once("init", async function() {
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: "1d20",
+    formula: "2d6-7",
     decimals: 2
   };
 
@@ -94,17 +94,22 @@ Hooks.once("init", async function() {
   Handlebars.registerHelper('slugify', function(value) {
     return value.slugify({strict: true});
   });
+  Handlebars.registerHelper("equals", function(v1, v2) {
+    if(v1 === v2)
+        return true;
+    return false;
+  });
   Handlebars.registerHelper("concat", function (...args) {
     const opts = args.pop();
     return args.join('');
   });
   Handlebars.registerHelper("getSkillInfo", function(object, value, type) {
-    console.log("############### getSkillInfo starts");
-    console.log(object);
-    console.log("value: "+value);
-    console.log("type: "+type);
-    console.log(object[value][type]);
-    console.log("############### getSkillInfo ends");
+    //console.log("############### getSkillInfo starts");
+    //console.log(object);
+    //console.log("value: "+value);
+    //console.log("type: "+type);
+    //console.log(object[value][type]);
+    //console.log("############### getSkillInfo ends");
     return object[value][type];
   });
   Handlebars.registerHelper("getDebugInfo", function(object, value, type) {

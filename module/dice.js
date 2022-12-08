@@ -1,7 +1,11 @@
 import * as Dialog from "./dialog.js";
 
-/* first variant without arguments */
+/*with skill input*/
 export async function skillCheck(actor){
+    let checkOptions = await Dialog.GetSkillCheckOptions();
+}
+/* first variant without arguments */
+export async function genericCheck(actor){
     let checkOptions = await Dialog.GetSkillCheckOptions();
     if(checkOptions.cancelled) return;
     let normaldice = checkOptions.normaldice;

@@ -11,7 +11,7 @@ masseffect.attributes = {
     tech: "masseffect.attributes.tech",
 }
 masseffect.skillslong = {
-    athletics: "masseffect.skills.athletics"/*,
+    athletics: "masseffect.skills.athletics",
     mining: "masseffect.skills.mining",
     biotics: "masseffect.skills.biotics",
     intimidate: "masseffect.skills.intimidate",
@@ -32,7 +32,7 @@ masseffect.skillslong = {
     universalweaponry: "masseffect.skills.universalweaponry",
     performance: "masseffect.skills.performance",
     science: "masseffect.skills.science",
-    perception: "masseffect.skills.perception"*/
+    perception: "masseffect.skills.perception"
 }
 masseffect.skillsshort = {
     athletics: "athletics",

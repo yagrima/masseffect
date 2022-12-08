@@ -41,8 +41,7 @@ hr.lowmargin {
   display: inline-block;
 }
 .masseffect .sheet-header {
-  flex: 0 0 90px;
-  overflow: hidden;
+  flex: 0 0 90px; 
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -83,11 +82,13 @@ hr.lowmargin {
   text-shadow: none;
 }
 .masseffect .sheet-body {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .masseffect .sheet-body .tab {
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .masseffect .sheet-body .tab .lefttab {
   width: 24%;
@@ -231,6 +232,14 @@ hr.lowmargin {
   height: 13px;
   padding: 0;
   text-align: left;
+  width: 98%;
+}
+.masseffect .sheet-body .tab input.skillspecboxright {
+  background: transparent;
+  border: 1px;
+  height: 13px;
+  padding: 0;
+  text-align: right;
   width: 98%;
 }
 .masseffect .editor,

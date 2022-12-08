@@ -46,8 +46,23 @@ export class SimpleActorSheet extends ActorSheet {
     derived.composure = Math.round(attributes.brains.current + attributes.personality.current + attributes.luck.current/2);
     /*initiative calculation, check for several (dis)advantages and talents*/
     derived.initiative = this._calculateInitiative(sheetData);
+    CONFIG.Combat.initiative = derived.initiative;
     derived.defense = this._calculateDefense(sheetData);
+    /*skills*/
+    this._calculateSkillpools(sheetData);
     return sheetData;
+  }
+  _calculateSkillpools(sheetData){
+    for(let a in masseffect.skillsshort){
+      //console.log(a+" > "+this._calculateAttributeNumber(sheetData,sheetData.data.skills[a].primary)+" + "+this._calculateAttributeNumber(sheetData,sheetData.data.skills[a].secondary)/2+" + "+sheetData.data.skills[a].value+" + "+sheetData.data.skills[a].bonusnormal);
+      sheetData.data.skills[a].dicepoolnormal = Math.round(this._calculateAttributeNumber(sheetData,sheetData.data.skills[a].primary) + this._calculateAttributeNumber(sheetData,sheetData.data.skills[a].secondary)/2 + sheetData.data.skills[a].value + sheetData.data.skills[a].bonusnormal);
+      sheetData.data.skills[a].dicepoolwild =sheetData.data.skills[a].bonuswild;
+    }
+    return true;
+  }
+  _calculateAttributeNumber(sheetData,attributeString){
+    //console.log("called with: "+attributeString+", result is"+sheetData.data.attributes[attributeString].current);
+    return sheetData.data.attributes[attributeString].current;
   }
   _calculateDefense(sheetData) {
     let attributes = sheetData.data.attributes;
@@ -89,21 +104,25 @@ export class SimpleActorSheet extends ActorSheet {
     if(this.actor.isOwner){}
     /* check the rest if sheet is editable */
     if(!this.isEditable) return;  
+    html.find(".generic-roll").click(this._onGenericRoll.bind(this));
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
-    html.find(".inputfield").onC
     html.find(".item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
-
-    html.find(".attributes a.attribute-roll").each((i, a) => {
-      a.setAttribute("draggable", true);
-      a.addEventListener("dragstart", ev => {
-        let dragData = ev.currentTarget.dataset;
-        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-      }, false);
-    });
+}
+_onGenericRoll(event) {
+  event.preventDefault();
+  Dice.genericCheck(this.actor);
 }
 _onSkillRoll(event) {
   event.preventDefault();
+  let element = event.currentTarget;
+  let droll = this.actor.system.diceroll;
+  droll.name = element.closest(".rollitem").dataset.name;
+  console.log(droll.name);
+  droll.normal = element.closest(".rollitem").dataset.normaldice;
+  console.log(droll.normal);
+  droll.wild = element.closest(".rollitem").dataset.wilddice;
+  console.log(droll.wild);
   Dice.skillCheck(this.actor);
 }
 

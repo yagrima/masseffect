@@ -382,6 +382,11 @@
     "untrained": true
   }
  },
+ "diceroll": {
+    "name": "Wurfbeschreibung",
+    "normaldice": 0,
+    "wilddice": 0
+ },
     "health": {
       "value": 30,
       "min": 0,
