@@ -94,7 +94,28 @@ Hooks.once("init", async function() {
   Handlebars.registerHelper('slugify', function(value) {
     return value.slugify({strict: true});
   });
-
+  Handlebars.registerHelper("concat", function (...args) {
+    const opts = args.pop();
+    return args.join('');
+  });
+  Handlebars.registerHelper("getSkillInfo", function(object, value, type) {
+    console.log("############### getSkillInfo starts");
+    console.log(object);
+    console.log("value: "+value);
+    console.log("type: "+type);
+    console.log(object[value][type]);
+    console.log("############### getSkillInfo ends");
+    return object[value][type];
+  });
+  Handlebars.registerHelper("getDebugInfo", function(object, value, type) {
+    console.log("############### GETDEBUGINFO starts");
+    console.log(object);
+    console.log("value: "+value);
+    console.log("type: "+type);
+    console.log(object[value][type]);
+    console.log("############### GETDEBUGINFO ends");
+    return object[value][type];
+  });
   // Preload template partials
   await preloadHandlebarsTemplates();
 });

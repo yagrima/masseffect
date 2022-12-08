@@ -152,7 +152,87 @@ hr.lowmargin {
   vertical-align: top;
   width: 100%;
 }
-
+.masseffect .sheet-body .tab .skilltablehead {
+  display: inline-block;
+  font-weight: bold;
+  text-align: left;
+  vertical-align: top;
+  width: 16%;
+}
+.masseffect .sheet-body .tab .skilltableheadshifted {
+  display: inline-block;
+  font-weight: bold;
+  padding-left: 7px;
+  text-align: left;
+  vertical-align: top;
+  width: 16%;
+}
+.masseffect .sheet-body .tab .skilltableheadsmaller {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: top;
+  width: 10%;
+}
+.masseffect .sheet-body .tab .skilltableheadsmall {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: top;
+  width: 5%;
+}
+.masseffect .sheet-body .tab .skilltable {
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+  width: 16%;
+}
+.masseffect .sheet-body .tab .skilltablecenter {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  width: 16%;
+}
+.masseffect .sheet-body .tab .skilltablesmall {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  width: 5%;
+}
+.masseffect .sheet-body .tab .skilltablesmaller {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  width: 10%;
+}
+.masseffect .sheet-body .tab select.attributeselect {
+  border: none;
+  background: transparent;
+  height: 17px;
+  width: 90%;
+}
+.masseffect .sheet-body .tab input.invisiblebox {
+  background: transparent;
+  border: 0px;
+  height: 17px;
+  text-align: center;
+}
+.masseffect .sheet-body .tab input.invisibleboxsmall {
+  background: transparent;
+  border: 1px solid;
+  height: 17px;
+  padding: 0;
+  text-align: center;
+  width: 25%;
+}
+.masseffect .sheet-body .tab input.skillspecbox {
+  background: transparent;
+  border: 1px;
+  height: 13px;
+  padding: 0;
+  text-align: left;
+  width: 98%;
+}
 .masseffect .editor,
 .masseffect .editor-content {
   padding: 5px;

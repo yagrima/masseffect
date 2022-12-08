@@ -1,4 +1,5 @@
 import * as Dice from "./dice.js";
+import {masseffect} from "./library.js";
 import {ATTRIBUTE_TYPES} from "./constants.js";
 
 /**
@@ -22,18 +23,21 @@ export class SimpleActorSheet extends ActorSheet {
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
+  /** @inheritdoc 
+   * https://foundryvtt.wiki/en/migrations/foundry-core-0_8_x
+   * https://foundryvtt.wiki/en/migrations/foundry-core-v10
+  */
   async getData(options) {
-    const context = await super.getData(options);
+    const basedata = await super.getData(options);
     let sheetData = {};
     sheetData.owner = this.actor.isOwner;
     sheetData.editable = this.isEditable;
-    sheetData.actor = context.actor;
-    sheetData.data = context.actor.system;
-    sheetData.items = context.items;
+    sheetData.actor = basedata.actor;
+    sheetData.data = basedata.actor.system;
+    sheetData.items = basedata.items;
     sheetData.config = CONFIG;
     sheetData.isGM = game.user.isGM;
-    console.log(sheetData.data);
+    sheetData.masseffect = masseffect;
     /*calculate derived attributes*/
     let attributes = sheetData.data.attributes;
     let derived = sheetData.data.derivedAttributes;
@@ -43,7 +47,6 @@ export class SimpleActorSheet extends ActorSheet {
     /*initiative calculation, check for several (dis)advantages and talents*/
     derived.initiative = this._calculateInitiative(sheetData);
     derived.defense = this._calculateDefense(sheetData);
-    console.log(derived.initiative);
     return sheetData;
   }
   _calculateDefense(sheetData) {

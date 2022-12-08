@@ -19,6 +19,9 @@
             <div class="halftab"><hr></div>
         </div>
         <div class="fullwidth">
+            <a class="item skill-roll" title="roll">generischer Würfelwurf <i class="fas fa-dice-d6 faD20Stat"></i></a>
+        </div>
+        <div class="fullwidth">
             <div class="borderbox">
                 Erinnerung 
                 <input class="invisiblebox" type="number" name="system.derivedAttributes.memory" value="{{data.derivedAttributes.memory}}">
@@ -79,6 +82,8 @@
 
         {{!-- Attributes Tab --}}
         <div class="tab description" data-group="primary" data-tab="attributes">
+            <!-- TODO: Attribute / Vorteile / Nachteile
+                Speziesmerkmale Allgemeine Talente Soziale Talente -->
             <div class="thirdtab">
                 <div class="borderheadline">Attribute</div>
                 <hr class="lowmargin">
@@ -239,7 +244,54 @@
 
         {{!-- Skills Tab --}}
         <div class="tab description" data-group="primary" data-tab="skills">
-            <a class="item skill-roll" title="roll"><i class="fas fa-dice-d6 faD20Stat"></i></a>
+            <div class="skilltablehead">Fertigkeit</div>
+            <div class="skilltableheadshifted">Primär</div>
+            <div class="skilltableheadshifted">Sekundär</div>
+            <div class="skilltableheadsmall">Wert</div>
+            <div class="skilltablehead">Spezialisierungen</div>
+            <div class="skilltableheadsmaller">Boni</div>
+            <div class="skilltablehead">Würfelpool</div>
+            <hr class="lowmargin">
+            
+            {{log "### begin multiskill group ###"}}
+            {{#each masseffect.skillslong as |skillname skilltype|}}
+                <div class="skilltable">{{localize skillname}}</div>
+                <div class="skilltable">
+                    <select class="attributeselect" name="system.skills.athletics.primary" value="{{getSkillInfo ../data.skills skilltype 'primary'}}">
+                        {{log ../data.skills.athletics.primary}}
+                        {{#select (concat '../data.skills.' skilltype '.primary')}}
+                        {{#each ../masseffect.attributes as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </div>
+                <div class="skilltable">
+                    <select class="attributeselect" name="system.skills.athletics.secondary" value="{{../data.skills.athletics.secondary}}">
+                        {{#select ../data.skills.athletics.secondary}}
+                        {{#each ../masseffect.attributes as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </div>
+                <div class="skilltablesmall">
+                    <input class="invisiblebox" type="number" name="system.skills.athletics.value" value="{{data.skills.athletics.value}}"> 
+                </div>
+                <div class="skilltable">
+                    <input class="skillspecbox" type="text" name="system.skills.athletics.specialisation1" value="{{data.skills.athletics.specialisation1}}" placeholder="keine" />
+                    <input class="skillspecbox" type="text" name="system.skills.athletics.specialisation2" value="{{data.skills.athletics.specialisation2}}" placeholder="keine" />
+                </div>
+                <div class="skilltablesmaller">
+                    <input class="invisibleboxsmall" type="number" name="system.skills.athletics.bonusnormal" value="{{data.skills.athletics.bonusnormal}}">
+                    <input class="invisibleboxsmall" type="number" name="system.skills.athletics.bonuswild" value="{{data.skills.athletics.bonuswild}}">
+                </div>
+                <div class="skilltable">
+                    <input class="invisibleboxsmall" type="number" name="system.skills.athletics.dicepoolnormal" value="{{data.skills.athletics.dicepoolnormal}}">
+                    <input class="invisibleboxsmall" type="number" name="system.skills.athletics.dicepoolwild" value="{{data.skills.athletics.dicepoolwild}}"> &nbsp; &nbsp;
+                    <a class="item skill-roll" title="roll"><i class="fas fa-dice-d6 faD6Stat"></i></a>
+                </div>
+            {{/each}}
         </div>
 
         {{!-- Combat Tab --}}
