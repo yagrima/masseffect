@@ -3,7 +3,8 @@ import * as Dialog from "./dialog.js";
 
 /*with skill input*/
 export async function skillCheck(actor,name,normal,wild){
-    return doDiceMagic(actor,actor.system.diceroll.normaldice,actor.system.diceroll.wilddice,name);
+    console.log("skill check: "+normal+","+wild+", "+name);
+    return doDiceMagic(actor,parseInt(normal),parseInt(wild),game.i18n.localize("masseffect.skills."+name));
 }
 
 /* first variant without arguments */
@@ -14,7 +15,7 @@ export async function genericCheck(actor){
 }
 
 export async function doDiceMagic(actor,normaldice,wilddice,name){
-    console.log("initial check: "+normaldice+","+wilddice+", "+name);
+    console.log("initial check: "+normaldice+" ("+typeof normaldice+"), "+wilddice+" ("+typeof wilddice+"), "+name);
     const template = "systems/masseffect/templates/skillcheck.html";
     let rollResults = [];
     let d6result = null;
@@ -79,6 +80,6 @@ export async function doDiceMagic(actor,normaldice,wilddice,name){
         content: await renderTemplate(template,templateContext)
     }
     console.log(templateContext);
-    console.log("HTML Preview: "+chatData.content);
+    //console.log("HTML Preview: "+chatData.content);
     ChatMessage.create(chatData);
 }

@@ -3,54 +3,54 @@
     {{!-- Sheet Header --}}
     <header class="sheet-header">
         <div class="fullwidth">
-            <div class="halftab">Lebenspunkte</div>
+            <div class="halftab">LEBENSPUNKTE</div>
             <div class="halftab"><hr></div>
         </div>
         <div class="fullwidth">
-            <div class="halftab">Ausrüstungspunkte</div>
+            <div class="halftab">AUSRÜSTUNGSPUNKTE</div>
             <div class="halftab"><hr></div>
         </div>
         <div class="fullwidth">
-            <div class="halftab">Kraftpunkte</div>
+            <div class="halftab">KRAFTPUNKTE</div>
             <div class="halftab"><hr></div>
         </div>
         <div class="fullwidth">
-            <div class="halftab">Kampfpool</div>
+            <div class="halftab">KAMPFPOOL</div>
             <div class="halftab"><hr></div>
         </div>
         <div class="fullwidth">
-            <a class="item generic-roll" title="roll">generischer Würfelwurf <i class="fas fa-dice-d6 faD20Stat"></i></a>
+            <a class="item generic-roll" title="roll">GENERISCHER WURF &nbsp; <i class="fas fa-dice-d6 faD20Stat"></i></a>
         </div>
         <div class="fullwidth">
             <div class="borderbox">
-                Erinnerung 
+                ERINNERUNG<br>
                 <input class="invisiblebox" type="number" name="system.derivedAttributes.memory" value="{{data.derivedAttributes.memory}}">
             </div>
             <div class="borderbox">
-                Heben/Tragen
+                HEBEN/TRAGEN<br>
                 <input class="invisiblebox" type="number" name="system.derivedAttributes.liftcarry" value="{{data.derivedAttributes.liftcarry}}">
             </div>
             <div class="borderbox">
-                Einschätzen
+                EINSCHÄTZEN<br>
                 <input class="invisiblebox" type="number" name="system.derivedAttributes.composure" value="{{data.derivedAttributes.composure}}">
             </div>
             <div class="borderbox">
-                Initiative
+                INITIATIVE<br>
                 <input class="invisibleinibox" type="text" name="system.derivedAttributes.initiative" value="{{data.derivedAttributes.initiative}}">
             </div>
             <div class="borderbox">
-                Verteidigung
+                VERTEIDIGUNG<br>
                 <input class="invisiblebox" type="number" name="system.derivedAttributes.defense" value="{{data.derivedAttributes.defense}}">
             </div>
         </div>
     </header>
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Kurzbio</a>
-        <a class="item" data-tab="attributes">Allgemeines</a>
-        <a class="item" data-tab="skills">Fertigkeiten</a>
-        <a class="item" data-tab="combat">Kampf</a>
-        <a class="item" data-tab="items">Ausrüstung</a>
+        <a class="item" data-tab="description">KURZBIO</a>
+        <a class="item" data-tab="attributes">ALLGEMEINES</a>
+        <a class="item" data-tab="skills">FERTIGKEITEN</a>
+        <a class="item" data-tab="combat">KAMPF</a>
+        <a class="item" data-tab="items">AUSRÜSTUNG</a>
         
     </nav>
 
@@ -63,19 +63,19 @@
                 <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="243" width="150" />
             </div>
             <div class="righttab">
-                <label class="spacedlabel" for="name">Name:</label>
+                <label class="spacedlabel" for="name">NAME</label>
                 <input class="spacedbox" name="name" type="text" value="{{actor.name}}" placeholder="Dein Charakter hat keinen Namen?" />
-                <label class="spacedlabel" for="race">Rasse:</label>
+                <label class="spacedlabel" for="race">SPEZIES</label>
                 <input class="spacedbox" name="system.bio.race" type="text" value="{{data.bio.race}}" placeholder="Welche Rasse hatten deine Eltern?" />
-                <label class="spacedlabel" for="origin">Herkunft:</label>
+                <label class="spacedlabel" for="origin">HERKUNFT</label>
                 <input class="spacedbox" name="system.bio.origin" type="text" value="{{data.bio.origin}}" placeholder="Wo wurdest du geboren?" />
-                <label class="spacedlabel" for="gender">Alter:</label>
+                <label class="spacedlabel" for="gender">ALTER</label>
                 <input class="spacedbox" name="system.bio.age" type="number" value="{{data.bio.age}}" placeholder="Wie lange machst du schon Probleme?"/>
-                <label class="spacedlabel" for="height">Größe und Gewicht:</label>
+                <label class="spacedlabel" for="height">GRÖSSE UND GEWICHT</label>
                 <input class="spacedbox" name="system.bio.height" type="text" value="{{data.bio.height}}" placeholder=""/>
             </div>
             <div class="editortab">
-                Charaktergeschichte:
+                CHARAKTERGESCHICHTE:
                 {{editor biographyHTML target="system.biography" button=true editable=editable engine="prosemirror"}}
             </div>
         </div>
@@ -85,66 +85,66 @@
             <!-- TODO: Attribute / Vorteile / Nachteile
                 Speziesmerkmale Allgemeine Talente Soziale Talente -->
             <div class="thirdtab">
-                <div class="borderheadline">Attribute</div>
+                <div class="borderheadline">ATTRIBUTE</div>
                 <hr class="lowmargin">
                 <div class="threequartertab">
-                    <label class="spacedlabel" for="system.attributes.dexterity.current">Geschick</label>
+                    <label class="spacedlabel" for="system.attributes.dexterity.current">GESCHICK</label>
                 </div>
                 <div class="quartertab">
                     <input class="inputfield" type="number" name="system.attributes.dexterity.current" value="{{data.attributes.dexterity.current}}">
                 </div>
                 <hr class="lowmargin">
                 <div class="threequartertab">
-                    <label class="spacedlabel" for="system.attributes.body.current">Körper</label>
+                    <label class="spacedlabel" for="system.attributes.body.current">KÖRPER</label>
                 </div>
                 <div class="quartertab">
                     <input class="inputfield" type="number" name="system.attributes.body.current" value="{{data.attributes.body.current}}">
                 </div>
                 <hr class="lowmargin">
                 <div class="threequartertab">
-                    <label class="spacedlabel" for="system.attributes.size.current">Größe</label>
+                    <label class="spacedlabel" for="system.attributes.size.current">GRÖSSE</label>
                 </div>
                 <div class="quartertab">
                     <input class="inputfield" type="number" name="system.attributes.size.current" value="{{data.attributes.size.current}}">
                 </div>
                 <hr class="lowmargin">
                 <div class="threequartertab">
-                    <label class="spacedlabel" for="system.attributes.reflexes.current">Reflexe</label>
+                    <label class="spacedlabel" for="system.attributes.reflexes.current">REFLEXE</label>
                 </div>
                 <div class="quartertab">
                     <input class="inputfield" type="number" name="system.attributes.reflexes.current" value="{{data.attributes.reflexes.current}}">
                 </div>
                 <hr class="lowmargin">
                 <div class="threequartertab">
-                    <label class="spacedlabel" for="system.attributes.luck.current">Glück</label>
+                    <label class="spacedlabel" for="system.attributes.luck.current">GLÜCK</label>
                 </div>
                 <div class="quartertab">
                     <input class="inputfield" type="number" name="system.attributes.luck.current" value="{{data.attributes.luck.current}}">
                 </div>
                 <hr class="lowmargin">
                 <div class="threequartertab">
-                    <label class="spacedlabel" for="system.attributes.brains.current">Kognition</label>
+                    <label class="spacedlabel" for="system.attributes.brains.current">KOGNITION</label>
                 </div>
                 <div class="quartertab">
                     <input class="inputfield" type="number" name="system.attributes.brains.current" value="{{data.attributes.brains.current}}">
                 </div>
                 <hr class="lowmargin">
                 <div class="threequartertab">
-                    <label class="spacedlabel" for="system.attributes.personality.current">Persönlichkeit</label>
+                    <label class="spacedlabel" for="system.attributes.personality.current">PERSÖNLICHKEIT</label>
                 </div>
                 <div class="quartertab">
                     <input class="inputfield" type="number" name="system.attributes.personality.current" value="{{data.attributes.personality.current}}">
                 </div>
                 <hr class="lowmargin">
                 <div class="threequartertab">
-                    <label class="spacedlabel" for="system.attributes.tech.current">Tech</label>
+                    <label class="spacedlabel" for="system.attributes.tech.current">TECH</label>
                 </div>
                 <div class="quartertab">
                     <input class="inputfield" type="number" name="system.attributes.tech.current" value="{{data.attributes.tech.current}}">
                 </div>
             </div>
             <div class="thirdtab">
-                <div class="borderheadline">Vorteile</div>
+                <div class="borderheadline">VORTEILE</div>
                 <hr class="lowmargin">
                 <input class="advantagefield" type="text" name="system.advantages.other.advantage1" value="{{data.advantages.other.advantage1}}"/>
                 <hr class="lowmargin">
@@ -163,7 +163,7 @@
                 <input class="advantagefield" type="text" name="system.advantages.other.advantage8" value="{{data.advantages.other.advantage8}}"/>
             </div>
             <div class="thirdtab">
-                <div class="borderheadline">Nachteile</div>
+                <div class="borderheadline">NACHTEILE</div>
                 <hr class="lowmargin">
                 <input class="advantagefield" type="text" name="system.disadvantages.other.disadvantage1" value="{{data.disadvantages.other.disadvantage1}}"/>
                 <hr class="lowmargin">
@@ -183,7 +183,7 @@
             </div>
             <hr>
             <div class="thirdtab">
-                <div class="borderheadline">Talente </div>
+                <div class="borderheadline">TALENTE</div>
                 <hr class="lowmargin">
                 <input class="advantagefield" type="text" name="system.talents.talent1" value="{{data.talents.talent1}}"/>
                 <hr class="lowmargin">
@@ -202,7 +202,7 @@
                 <input class="advantagefield" type="text" name="system.talents.talent8" value="{{data.talents.talent8}}"/>
             </div>
             <div class="thirdtab">
-                <div class="borderheadline">Soziale Talente</div>
+                <div class="borderheadline">SOZIALE TALENTE</div>
                 <hr class="lowmargin">
                 <input class="advantagefield" type="text" name="system.socialtalents.combattalent1" value="{{data.socialtalents.combattalent1}}"/>
                 <hr class="lowmargin">
@@ -221,7 +221,7 @@
                 <input class="advantagefield" type="text" name="system.socialtalents.combattalent8" value="{{data.socialtalents.combattalent8}}"/>
             </div>
             <div class="thirdtab">
-                <div class="borderheadline">Kräftetalente</div>
+                <div class="borderheadline">KRÄFTETALENTE</div>
                 <hr class="lowmargin">
                 <input class="advantagefield" type="text" name="system.powertalents.powertalent1" value="{{data.powertalents.powertalent1}}"/>
                 <hr class="lowmargin">
@@ -244,17 +244,17 @@
 
         {{!-- Skills Tab --}}
         <div class="tab description" data-group="primary" data-tab="skills">
-            <div class="skilltablehead">Fertigkeit</div>
-            <div class="skilltableheadshifted">Primär</div>
-            <div class="skilltableheadshifted">Sekundär</div>
-            <div class="skilltableheadsmall">Wert</div>
-            <div class="skilltablehead">Spezialisierungen</div>
-            <div class="skilltableheadsmaller">Boni</div>
-            <div class="skilltablehead">Würfelpool</div>
+            <div class="skilltableheadlarger">FERTIGKEIT</div>
+            <div class="skilltableheadshifted">PRIMÄR</div>
+            <div class="skilltableheadshifted">SEKUNDÄR</div>
+            <div class="skilltableheadsmaller">WERT</div>
+            <div class="skilltableheadsmaller">SPEZ.</div>
+            <div class="skilltableheadsmaller">BONI</div>
+            <div class="skilltableheadsmaller">WÜRFELPOOL</div>
             <hr class="lowmargin">
             
             {{#each masseffect.skillslong as |skillname skilltype|}}
-                <div class="skilltable">{{localize skillname}}</div>
+                <div class="skilltablelarger">{{localize skillname}}</div>
                 <div class="skilltable">
                     <select class="attributeselect" name="{{concat 'system.skills.' skilltype '.primary'}}" value="{{getSkillInfo ../data.skills skilltype 'primary'}}">
                         {{#select (concat '../data.skills.' skilltype '.primary')}}
@@ -274,12 +274,12 @@
                         {{/select}}
                     </select>
                 </div>
-                <div class="skilltablesmall">
+                <div class="skilltablesmaller">
                     <input class="invisiblebox" type="number" name="{{concat 'system.skills.' skilltype '.value'}}" value="{{getSkillInfo ../data.skills skilltype 'value'}}"> 
                 </div>
-                <div class="skilltable">
-                    <input class="skillspecbox" type="text" name="{{concat 'system.skills.' skilltype '.specialisation1'}}" value="{{getSkillInfo ../data.skills skilltype 'specialisation1'}}" placeholder="keine" />
-                    <input class="skillspecboxright" type="text" name="{{concat 'system.skills.' skilltype '.specialisation2'}}" value="{{getSkillInfo ../data.skills skilltype 'specialisation2'}}" placeholder="keine" />
+                <div class="skilltablesmaller">
+                    <input class="skillspecbox" type="text" name="{{concat 'system.skills.' skilltype '.specialisation1'}}" value="{{getSkillInfo ../data.skills skilltype 'specialisation1'}}" placeholder="KEINE" />
+                    <input class="skillspecboxright" type="text" name="{{concat 'system.skills.' skilltype '.specialisation2'}}" value="{{getSkillInfo ../data.skills skilltype 'specialisation2'}}" placeholder="KEINE" />
                 </div>
                 <div class="skilltablesmaller">
                     <input class="invisibleboxsmall" type="number" name="{{concat 'system.skills.' skilltype '.bonusnormal'}}" value="{{getSkillInfo ../data.skills skilltype 'bonusnormal'}}">
@@ -287,7 +287,7 @@
                 </div>
                 <div class="skilltable">
                     <input class="invisibleboxsmall" type="number" name="{{concat 'system.skills.' skilltype '.dicepoolnormal'}}" value="{{getSkillInfo ../data.skills skilltype 'dicepoolnormal'}}">
-                    <input class="invisibleboxsmall" type="number" name="{{concat 'system.skills.' skilltype '.dicepoolwild'}}" value="{{getSkillInfo ../data.skills skilltype 'dicepoolwild'}}"> &nbsp; &nbsp;
+                    <input class="invisibleboxsmall" type="number" name="{{concat 'system.skills.' skilltype '.dicepoolwild'}}" value="{{getSkillInfo ../data.skills skilltype 'dicepoolwild'}}">&nbsp;
                     <a class="rollitem skill-roll" title="{{skilltype}}" data-name="{{skilltype}}" data-normaldice="{{getSkillInfo ../data.skills skilltype 'dicepoolnormal'}}" data-wilddice="{{getSkillInfo ../data.skills skilltype 'dicepoolwild'}}"><i class="fas fa-dice-d6 faD6Stat"></i></a>
                 </div>
                 <hr class="lowmargin">
@@ -297,7 +297,7 @@
         {{!-- Combat Tab --}}
         <div class="tab description" data-group="primary" data-tab="combat">
             <div class="thirdtab">
-                <div class="borderheadline">Kampftalente</div>
+                <div class="borderheadline">KAMPFTALENTE</div>
                 <hr class="lowmargin">
                 <input class="advantagefield" type="text" name="system.combattalents.combattalent1" value="{{data.combattalents.combattalent1}}"/>
                 <hr class="lowmargin">
