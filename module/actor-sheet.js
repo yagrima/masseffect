@@ -75,27 +75,27 @@ export class SimpleActorSheet extends ActorSheet {
     let isImpulsive = false;
     let hasLightningReflexes = false;
     for(let a in sheetData.data.disadvantages.other){
-      if(sheetData.data.disadvantages.other[a] == "Langsam") {
+      if(sheetData.data.disadvantages.other[a].toUpperCase() == "Langsam".toUpperCase()) {
         isSlow = true;
       }
-      if(sheetData.data.disadvantages.other[a] == "Impulsiv") {
+      if(sheetData.data.disadvantages.other[a].toUpperCase() == "Impulsiv".toUpperCase()) {
         isImpulsive = true;
       }
     }
     for(let a in sheetData.data.advantages.other){
-      if(sheetData.data.advantages.other[a] == "Blitzreflexe") {
+      if(sheetData.data.advantages.other[a].toUpperCase() == "Blitzreflexe".toUpperCase()) {
         hasLightningReflexes = true;
       }
     }
     for(let a in sheetData.data.combattalents){
-      if(sheetData.data.combattalents[a] == "Kühler Kopf") {
+      if(sheetData.data.combattalents[a].toUpperCase() == "Kühler Kopf".toUpperCase()) {
         isColdBlooded = true;
       } continue;
     }
     /*console.log("Langsam: "+isSlow+", Kühler Kopf: "+isColdBlooded+", Impulsiv: "+isImpulsive+", Blitzreflexe: "+hasLightningReflexes);*/
     let inimod = isColdBlooded ? Math.round(attributes.brains.current+ attributes.luck.current/2) : Math.round(attributes.reflexes.current+ attributes.luck.current/2);
-    inimod -= hasLightningReflexes ? 2 : 0 ;
-    inimod -= isImpulsive ? 2 : 0 ;
+    inimod += hasLightningReflexes ? 2 : 0 ;
+    inimod += isImpulsive ? 2 : 0 ;
     /*console.log(inimod);*/
     return isSlow ? "3d6-"+inimod : "2d6-"+inimod;
   }
