@@ -1,4 +1,9 @@
 {
+  "COMBAT.CombatantDefeated": "besiegt",
+  "COMBAT.CombatantHidden": "nicht sichtbar",
+  "COMBAT.CombatantImage": "&nbsp;",
+  "COMBAT.CombatantInitiative": "Tick",
+  "COMBAT.CombatantName": "Name",
   "masseffect.attributes.brains": "KOGNITION",
   "masseffect.attributes.body": "KÖRPER",
   "masseffect.attributes.dexterity": "GESCHICK",

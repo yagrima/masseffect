@@ -1,50 +1,36 @@
 <form>
     <div class="form-group">
-        <label>{{ localize "COMBAT.CombatantName" }}</label>
+        <label>Name</label>
         <div class="form-fields">
-            <input type="text" name="name" value="{{ data.name }}"/>
+            <input type="text" name="name" value="{{actor.name }}"/>
         </div>
     </div>
 
     <div class="form-group">
-        <label>{{ localize "COMBAT.CombatantImage" }}</label>
+        <label>Bild</label>
         <div class="form-fields">
             {{filePicker target="img" type="image"}}
-            <input class="image" type="text" name="img" placeholder="path/image.png" value="{{data.img}}"/>
+            <input class="image" type="text" name="img" placeholder="path/image.png" value="{{img}}"/>
         </div>
     </div>
 
     <div class="form-group">
-        <label>{{ localize "COMBAT.CombatantInitiative" }}</label>
+        <label>Tick</label>
         <div class="form-fields">
-            <input type="number" name="initiative" value="{{ data.initiative }}" step="any"/>
+            <input type="number" name="initiative" value="{{ initiative }}" step="any" placeholder="131"/>
         </div>
     </div>
 
-    <div class="form-group">
-        <label>Combat Type</label>
-        <div class="form-fields">
-            <select name="flags.GDSA.combatType">
-                {{#select data.flags.GDSA.combatType}}
-                    <option value="" selected></option>
-                    <option value="NPC">{{ localize "GDSA.combat.NPC" }}</option>
-                    <option value="PC">{{ localize "GDSA.combat.PC" }}</option>
-                    <option value="Enemy">{{ localize "GDSA.combat.Enemy" }}</option>
-                {{/select}}
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label>{{localize "COMBAT.CombatantStatus"}}</label>
+     <div class="form-group">
+        <label>Status</label>
         <div class="form-fields">
             <label class="checkbox">
-                <input type="checkbox" name="hidden" {{ checked data.hidden }}/>
-                {{ localize "COMBAT.CombatantHidden" }}
+                <input type="checkbox" name="hidden" {{ checked hidden }}/>
+                Verborgen
             </label>
             <label class="checkbox">
-                <input type="checkbox" name="defeated" {{ checked data.defeated }}/>
-                {{ localize "COMBAT.CombatantDefeated" }}
+                <input type="checkbox" name="defeated" {{ checked defeated }}/>
+                Besiegt
             </label>
         </div>
     </div>
