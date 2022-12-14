@@ -1,7 +1,7 @@
 // Import Modules
 import meCombat from "./combat.js";
 import meCombatTracker from "./combattracker.js";
-import { _getInitiativeFormula } from "./initative.js";
+import { _getInitiativeFormula } from "./initiative.js";
 import { SimpleActor } from "./actor.js";
 import { SimpleItem } from "./item.js";
 import { SimpleItemSheet } from "./item-sheet.js";
@@ -23,22 +23,19 @@ Hooks.once("init", async function() {
    * Set an initiative formula for the system. This will be updated later.
    * @type {String}
    */
-  CONFIG.Combat.initiative = {
-    formula: "2d6-7",
-    decimals: 2
-  };
-
+  
   game.masseffect = {
     SimpleActor/*,
     createMassEffectMacro*/
   };
-
+  
   // Define custom Document classes
   CONFIG.Actor.documentClass = SimpleActor;
+  CONFIG.Combat.documentClass = meCombat;
+  CONFIG.Combat.initiative = {formula: "2d6-7",decimals: 2};
   CONFIG.Item.documentClass = SimpleItem;
   CONFIG.Token.documentClass = SimpleTokenDocument;
   CONFIG.Token.objectClass = SimpleToken;
-  CONFIG.Combat.documentClass = meCombat;
   CONFIG.ui.combat = meCombatTracker;
 
   // Register sheet application classes

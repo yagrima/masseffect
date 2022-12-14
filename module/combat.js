@@ -36,10 +36,10 @@ export default class meCombat extends Combat {
         const updates = [];
         const messages = [];
 
-        for(let [i,id] of ids.entries){
+        for(let [i,id] of ids.entries()){
             const combatant = this.combatants.get(id);
             if(!combatant?.isOwner) continue;
-            const roll = combatant.getInitiativeRolle(formula);
+            const roll = combatant.getInitiativeRoll(formula);
             await roll.evaluate({async: true});
             updates.push({_id: id, initiative: roll.total})
             let templateContext = {roll: roll};
