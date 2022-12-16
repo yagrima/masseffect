@@ -25,6 +25,21 @@ input::-webkit-input-placeholder {
 }
 .chat-message {
   background: #f1f1f1;
+  font-family: slider,'masseffect','me2';
+}
+.tab{
+  font-family: slider,'masseffect','me2';
+}
+/* overwrite foundry standards */
+.directory .directory-list{
+  overflow: hidden;
+}
+.directory .directory-item{
+  height: 56px;
+}
+.directory .directory-item.active {
+  border-color:#0eb9fe;
+  height: 56px;
 }
 .center {
   text-align: center;
@@ -32,6 +47,10 @@ input::-webkit-input-placeholder {
 hr.lowmargin {
   margin-top: 2px;
   margin-bottom: 2px;
+}
+hr.normalmargin {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .masseffect {
   font-family: slider,'masseffect','me2';
@@ -473,13 +492,87 @@ hr.lowmargin {
   padding-left: 10px;
   padding-right: 10px;
   text-align: center;
+  width: 100%;
 }
 .masseffect .dice {
   display: inline-block;
+}
+.masseffect .inidice {
+  display: inline-block;
+  text-align: center;
 }
 .masseffect .successes {
   font-weight: bold;
   padding-top: 10px;
   padding-left: 10px;
   text-align: center;
+}
+.combat-control{
+  display: inline-block;
+  text-align: center;
+  width: 10%;
+}
+.combat-create{
+  display: inline-block;
+  text-align: center;
+  width: 10%;
+}
+.combat-cycle{
+  display: inline-block;
+  text-align: center;
+  width: 10%;
+}
+.combat-header {
+  height: 50px;
+}
+.combat-headline{
+  display: inline-block;
+  text-align: center;
+  width: 50%;
+}
+.combat-headline .threequarters{
+  display: inline-block;
+  width: 75%;
+}
+.combat-settings{
+  display: inline-block;
+  text-align: center;
+  width: 10%;
+}
+div.combatant-control{
+  display: inline-block;
+  height: 48px;
+  width: 60%;
+}
+.combatant-controls {
+  line-height: 24px !important;
+}
+div.combatant-image{
+  display: inline-block;
+  height: 48px;
+  padding-right: 10px;
+  width: 48px;
+}
+img.combatant-image{
+  width: 48px;
+  height: 48px !important;
+}
+.combatant-initiative{
+  display: inline-block;
+  height: 48px;
+  text-align: center;
+  vertical-align: top;
+}
+div.combatant-name{
+  vertical-align: middle;
+  height: 24px;
+}
+.combatant-name h4 {
+  line-height: 24px !important;
+}
+.combatfooterwidth {
+  text-align: center;
+  width: 298px;
+}
+.combat-tracker { 
 }

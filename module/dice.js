@@ -16,7 +16,7 @@ export async function genericCheck(actor){
 
 export async function doDiceMagic(actor,normaldice,wilddice,name){
     console.log("initial check: "+normaldice+" ("+typeof normaldice+"), "+wilddice+" ("+typeof wilddice+"), "+name);
-    const template = "systems/masseffect/templates/skillcheck.html";
+    const template = "systems/masseffect/templates/chat-skillcheck.html";
     let rollResults = [];
     let d6result = null;
     const rollformula = "1d6";

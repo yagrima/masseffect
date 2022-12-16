@@ -92,11 +92,9 @@ export class SimpleActorSheet extends ActorSheet {
         isColdBlooded = true;
       } continue;
     }
-    /*console.log("Langsam: "+isSlow+", Kühler Kopf: "+isColdBlooded+", Impulsiv: "+isImpulsive+", Blitzreflexe: "+hasLightningReflexes);*/
     let inimod = isColdBlooded ? Math.round(attributes.brains.current+ attributes.luck.current/2) : Math.round(attributes.reflexes.current+ attributes.luck.current/2);
     inimod += hasLightningReflexes ? 2 : 0 ;
     inimod += isImpulsive ? 2 : 0 ;
-    /*console.log(inimod);*/
     return isSlow ? "3d6-"+inimod : "2d6-"+inimod;
   }
   activateListeners(html) {
