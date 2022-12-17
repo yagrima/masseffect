@@ -4,6 +4,7 @@ export default class meCombatTracker extends CombatTracker {
     get template() {
         return "systems/masseffect/templates/combattracker.html";
     }
+    
     _onConfigureCombatant(li) {
         const combatant = this.viewed.combatants.get(li.data('combatant-id'));
         new meCombatant(combatant, {
