@@ -1,4 +1,4 @@
-/* Farbschema: https://www.color-hex.com/color-palette/79506*/
+/* Farbschema: https://www.color-hex.com/color-palette/79506 */
 
 /* hide dropdown arrow */
 select {
@@ -40,6 +40,18 @@ input::-webkit-input-placeholder {
 .directory .directory-item.active {
   border-color:#0eb9fe;
   height: 56px;
+}
+li.hidden {
+  background-color: #f1f1f1;
+  color: #538898;
+  display: inherit;
+}
+li.defeated {
+  background-color: #f1f1f1;
+  color: #171614;
+  display: inherit;
+  text-decoration: line-through;
+  text-shadow: 0.1em 0.1em 0.05em #e61809;
 }
 .center {
   text-align: center;
@@ -539,6 +551,9 @@ hr.normalmargin {
   text-align: center;
   width: 10%;
 }
+.defeated .combatant-control {
+  display:none;
+}
 div.combatant-control{
   display: inline-block;
   height: 48px;
@@ -546,6 +561,13 @@ div.combatant-control{
 }
 .combatant-controls {
   line-height: 24px !important;
+}
+div.combatant-data{
+  display: inline-block;
+  height: 48px;
+  margin-left: -5px;
+  vertical-align: top;
+  width: 60%;
 }
 div.combatant-image{
   display: inline-block;
@@ -575,4 +597,5 @@ div.combatant-name{
   width: 298px;
 }
 .combat-tracker { 
+  padding-top: 20px;
 }

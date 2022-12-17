@@ -81,22 +81,21 @@
             <div class="combatant-image">
                 <img class="combatant-image" data-src="{{this.img}}" title="{{this.name}}"/>
             </div>
-            <div class="combatant-control">
+            <div class="combatant-data">
                 <div class="combatant-name"><h4>{{this.name}}</h4></div>
                 <div class="combatant-controls">
                     {{#if ../user.isGM}}
                     <a class="combatant-control {{#if this.hidden}}active{{/if}}" title="{{localize 'COMBAT.ToggleVis'}}" data-control="toggleHidden">
-                        <i class="fas fa-eye-slash"></i></a>&nbsp;
-                    <a class="combatant-control {{#if this.defeated}}active{{/if}}" title="{{localize 'COMBAT.ToggleDead'}}" data-control="toggleDefeated">
-                        <i class="fas fa-skull"></i></a>&nbsp;
+                        <i class="fas fa-eye-slash"></i></a>
+                    <a class="combatant-control2 {{#if this.defeated}}active{{/if}}" title="{{localize 'COMBAT.ToggleDead'}}" data-control="toggleDefeated">
+                        <i class="fas fa-skull"></i></a>
                     {{/if}}
                     <a class="combatant-control" title="{{localize 'COMBAT.Wait'}}" data-control="tokenWait">
-                        <i class="fa-light fa-hourglass-half"></i></a>&nbsp;
+                        <i class="fa-light fa-hourglass-half"></i></a>
                     <a class="combatant-control" title="{{localize 'COMBAT.TickUp'}}" data-control="tickUp">
                         <i class="fa-solid fa-timeline-arrow"></i></a>
                     <a class="combatant-control" title="{{localize 'COMBAT.Edit'}}" data-control="changeTick">
                         <i class="fa-thin fa-user-pen"></i></a>
-                    <!--abwarten, +Ticks usw.-->
                 </div>
             </div> 
 
