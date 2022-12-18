@@ -294,7 +294,21 @@
             {{/each}}
         </div>
 
-        {{!-- Combat Tab --}}
+        {{!-- Combat Tab --}} <!-- Angriffsfenster [Name, Schadenscode, KWG/WGS, Merkmale] -->
+        <div class="tab description" data-group="primary" data-tab="combat">
+            <div class="combattablehead">ANGRIFF</div>
+            <div class="combattableheadsmall">SCHADEN</div>
+            <div class="combattableheadsmall">WGS/KWG</div>
+            <div class="combattablehead">WÜRFELPOOL</div>
+            <div class="combattableheadlarge">MERKMALE</div>
+            <hr class="lowmargin">
+            {{#each masseffect.weapons as |weaponname skilltype|}}
+                <div class="combattable"> 
+                    <input class="" type="text" name="system.weapon.name" value="../data.weapon.name" placeholder="wirklich kein Angriff?" />
+                    {{log ../data.weapon.name}}
+                </div>
+            {{/each}}
+        </div>
         <div class="tab description" data-group="primary" data-tab="combat">
             <div class="thirdtab">
                 <div class="borderheadline">KAMPFTALENTE</div>

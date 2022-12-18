@@ -60,8 +60,7 @@ export class SimpleActorSheet extends ActorSheet {
     }
     return true;
   }
-  _calculateAttributeNumber(sheetData,attributeString){
-    //console.log("called with: "+attributeString+", result is"+sheetData.data.attributes[attributeString].current);
+  _calculateAttributeNumber(sheetData,attributeString){ 
     return sheetData.data.attributes[attributeString].current;
   }
   _calculateDefense(sheetData) {

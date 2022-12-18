@@ -58,3 +58,10 @@ masseffect.skillsshort = {
     science: "science",
     perception: "perception"
 }
+masseffect.weapons = {
+    weaponOne: "Nahkampfwaffe",
+    weaponTwo: "Fernkampfwaffe",
+    weaponThree: "Kampfkraft",
+    weaponFour: "Techkraft",
+    weaponFive: "Biotikkraft"
+}

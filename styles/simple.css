@@ -304,6 +304,27 @@ hr.normalmargin {
   text-align: right;
   width: 98%;
 }
+.masseffect .sheet-body .tab .combattablehead {
+  display: inline-block;
+  font-weight: bold;
+  text-align: left;
+  vertical-align: top;
+  width: 20%;
+}
+.masseffect .sheet-body .tab .combattableheadsmall {
+  display: inline-block;
+  font-weight: bold;
+  text-align: left;
+  vertical-align: top;
+  width: 15%;
+}
+.masseffect .sheet-body .tab .combattableheadlarge {
+  display: inline-block;
+  font-weight: bold;
+  text-align: left;
+  vertical-align: top;
+  width: 25%;
+}
 .masseffect .editor,
 .masseffect .editor-content {
   padding: 5px;
