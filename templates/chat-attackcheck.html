@@ -1,0 +1,42 @@
+<div class="masseffect chat message">
+    <div class="chatborder headline">ANGRIFF: {{name}} </div>
+    <div class="dicefield">
+        {{#each rollResults}}
+            <div class="dice">
+                {{#if isWild}}   
+                    {{#if (eq diceroll "1")}} <img src="systems/masseffect/img/Wild_1red.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq diceroll "2")}} <img src="systems/masseffect/img/Wild_2red.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq diceroll "3")}} <img src="systems/masseffect/img/Wild_3red.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq diceroll "4")}} <img src="systems/masseffect/img/Wild_4red.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq diceroll "5")}} <img src="systems/masseffect/img/Wild_5red.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq diceroll "6")}} <img src="systems/masseffect/img/Wild_6red.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                {{/if}}
+                {{#unless isWild}}
+                    {{#if (eq diceroll "1")}} <img src="systems/masseffect/img/D6_1blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq diceroll "2")}} <img src="systems/masseffect/img/D6_2blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq diceroll "3")}} <img src="systems/masseffect/img/D6_3blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq diceroll "4")}} <img src="systems/masseffect/img/D6_4blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq diceroll "5")}} <img src="systems/masseffect/img/D6_5blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq diceroll "6")}} <img src="systems/masseffect/img/D6_6blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                {{/unless}}
+            </div>
+        {{/each}}
+    </div>
+    {{#if isFumble}}
+        {{#if isCritical}}
+            <div class="chatborder blackred">
+                KRITISCHER FEHLSCHLAG
+            </div>
+            {{else}}
+            <div class="chatborder blackblue">
+                KOMPLIKATION
+            </div>
+        {{/if}}
+    {{/if}}
+    <div class="successes">
+        {{noSuccesses}} ERFOLGE!
+    </div>
+    <div class="chatborder headline">
+        <a class="rollitem initiative" title="INI anpassen" data-wgs="{{wgs}}"><i class="fas fa-clock"></i> INITIATIVE ANPASSEN</a>
+    </div>
+</div>

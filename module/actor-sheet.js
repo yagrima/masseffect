@@ -103,6 +103,8 @@ export class SimpleActorSheet extends ActorSheet {
     if(!this.isEditable) return;  
     html.find(".generic-roll").click(this._onGenericRoll.bind(this));
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
+    html.find(".attack-roll").click(this._onAttackRoll.bind(this));
+    html.find(".initiative").click(this._Initiative.bind(this));
     html.find(".item-control").click(this._onItemControl.bind(this));
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 }
@@ -118,7 +120,22 @@ _onSkillRoll(event) {
   let wild = element.wilddice;
   Dice.skillCheck(this.actor,name,normal,wild);
 }
-
+_onAttackRoll(event) {
+  event.preventDefault();
+  let element = event.currentTarget.closest(".rollitem").dataset;
+  let name = element.name;
+  let normal = element.normaldice;
+  let wild = element.wilddice;
+  let attributes = element.attributes; 
+  let wgs = element.wgs;
+  Dice.attackCheck(this.actor,parseInt(normal),parseInt(wild),name,attributes,wgs); 
+}
+_Initiative(event){
+  event.preventDefault();
+  let element = event.currentTarget.closest(".rollitem").dataset;
+  let wgs = element.wgs;
+  Dice.changeInitiative(this.actor,wgs);
+}
   /**
    * Handle click events for Item control buttons within the Actor Sheet
    * @param event

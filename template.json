@@ -382,6 +382,15 @@
     "untrained": true
   }
  },
+ "weapons": {
+  "weapon1":{
+    "name":"placeholder",
+    "damagecode":"1W6+1",
+    "wgskwg": 6,
+    "normal": 8,
+    "wild": 1
+  }
+ },
  "diceroll": {
     "name": "Wurfbeschreibung",
     "normaldice": 0,

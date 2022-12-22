@@ -17,6 +17,7 @@
   "masseffect.attributes.tech": "TECH",
   "masseffect.chat.cancel": "Abbrechen",
   "masseffect.chat.generictest": "ALLGEMEIN",
+  "masseffect.chat.adjustini": "TICKS ANPASSEN",
   "masseffect.chat.roll": "Würfeln",
   "masseffect.derivedAttribute.healthpoints": "Lebenspunkte",
   "masseffect.genericdiceroll": "ALLGEMEIN",

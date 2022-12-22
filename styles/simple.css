@@ -152,9 +152,10 @@ hr.normalmargin {
   margin-left: 15px;
 }
 .masseffect .sheet-body .tab .righttab .spacedbox {
-  margin-left: 15px;
-  margin-bottom: 5px;
   border: 0px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+  width: 95%;
 }
 .masseffect .sheet-body .tab .tentab {
   width: 9%;
@@ -311,10 +312,22 @@ hr.normalmargin {
   vertical-align: top;
   width: 20%;
 }
+.masseffect .sheet-body .tab .combattable {
+  display: inline-block; 
+  text-align: left;
+  vertical-align: middle;
+  width: 20%;
+}
 .masseffect .sheet-body .tab .combattableheadsmall {
   display: inline-block;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
+  vertical-align: top;
+  width: 15%;
+}
+.masseffect .sheet-body .tab .combattablesmall {
+  display: inline-block;
+  text-align: center;
   vertical-align: top;
   width: 15%;
 }
@@ -325,172 +338,33 @@ hr.normalmargin {
   vertical-align: top;
   width: 25%;
 }
+.masseffect .sheet-body .tab .combattablelarge {
+  display: inline-block; 
+  text-align: left;
+  vertical-align: top;
+  width: 25%;
+}
+.masseffect .sheet-body .tab .weaponinputbox {
+  border: 0px;
+  height: 18px;
+  margin-bottom: 5px;
+  width: 95%;
+}
+.masseffect .sheet-body .tab .dicerollinputbox,
+.masseffect .sheet-body .tab .wgsinputbox {
+  border: 0px;
+  height: 18px;
+  margin-bottom: 5px;
+  text-align: center;
+  width: 80%;
+}
+
 .masseffect .editor,
 .masseffect .editor-content {
   padding: 5px;
   height: 100%;
   min-height: 100px;
-}
-.masseffect .item-list {
-  list-style: none;
-  margin: 7px 0;
-  padding: 0;
-  overflow-y: auto;
-}
-.masseffect .item-list .item {
-  min-height: 30px;
-  line-height: 24px;
-  padding: 3px 0;
-  border-bottom: 1px solid #BBB;
-  align-items: stretch;
-}
-.masseffect .item-list .item img {
-  flex: 0 0 24px;
-  margin-right: 5px;
-}
-.masseffect .item-list .item-name {
-  margin: 0;
-}
-.masseffect .item-list .item-controls {
-  flex: 0 0 36px;
-}
-.masseffect .item-list .item-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: center;
-  flex: 2;
-  justify-content: flex-start;
-}
-.masseffect .item-list .item-button {
-  line-height: 1;
-  font-size: 11px;
-  flex: none;
-  width: auto;
-}
-.masseffect .attributes {
-  position: relative;
-}
-.masseffect .attributes .attribute-control,
-.masseffect .attributes .group-control {
-  flex: 0 0 20px;
-  text-align: center;
-  line-height: 28px;
-  border: none;
-}
-.masseffect .attributes .attribute-roll {
-  flex: 0 0 20px;
-  text-align: center;
-  border-bottom: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.masseffect .attributes .group-prefix {
-  height: 31px;
-  margin-right: 10px;
-}
-.masseffect .attributes .button {
-  width: 100%;
-  flex: 1;
-  margin: 0;
-  background: rgba(0, 0, 0, 0.1);
-  border: 2px groove #f0f0e0;
-  border-radius: 3px;
-  font-size: 14px;
-  line-height: 28px;
-  display: block;
-}
-.masseffect .attributes .attribute-key {
-  background: transparent;
-  border: none;
-}
-.masseffect .attributes-header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  align-items: center;
-  padding: 0 5px;
-  margin: 5px 0;
-  background: #cfcdc2;
-  border: 1px solid #AAA;
-  border-radius: 2px;
-  text-align: left;
-  font-weight: bold;
-}
-.masseffect .attributes-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.masseffect .attributes-list li > * {
-  margin: 0 3px;
-  height: 28px;
-  line-height: 24px;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid #AAA;
-}
-.masseffect .attributes-list .attribute-col label {
-  font-size: 10px;
-  text-align: center;
-  line-height: 1;
-}
-.masseffect .attributes-list .attribute-col input {
-  font-size: 11px;
-  text-align: center;
-  line-height: 1;
-  height: 50%;
-}
-.masseffect .attribute input[type="text"]::placeholder,
-.masseffect .group-header input[type="text"]::placeholder {
-  opacity: 0;
-  transition: opacity 0.25s ease-in-out;
-}
-.masseffect .attribute input[type="text"]:focus::placeholder,
-.masseffect .group-header input[type="text"]:focus::placeholder {
-  opacity: 1;
-}
-.masseffect .group-controls {
-  margin: 5px;
-}
-.masseffect .groups-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.masseffect .group {
-  margin: 5px 0 0;
-  padding: 0;
-}
-.masseffect .group-header {
-  align-items: center;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid #AAA;
-  border-radius: 2px;
-  padding: 2px 5px;
-}
-.masseffect .group-key,
-.masseffect .group-label {
-  font-weight: bold;
-  border: none;
-  border-bottom: 1px solid #AAA;
-  background: transparent;
-  border-radius: 0;
-  margin-right: 6px;
-}
-.masseffect .group-key {
-  opacity: 0.75;
-}
-.masseffect .group-label {
-  flex: 2;
-}
-.masseffect .group-dtype {
-  height: 24px;
-  flex: 0 0 116px;
-  margin: 0 5px;
-}
+} 
 .masseffect.sheet.actor {
   min-width: 560px;
   min-height: 420px;
@@ -536,8 +410,9 @@ hr.normalmargin {
 }
 .masseffect .successes {
   font-weight: bold;
-  padding-top: 10px;
+  padding-bottom: 5px;
   padding-left: 10px;
+  padding-top: 5px;
   text-align: center;
 }
 .combat-control{
