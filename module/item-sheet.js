@@ -1,5 +1,4 @@
-//import { EntitySheetHelper } from "./helper.js";
-import {ATTRIBUTE_TYPES} from "./constants.js";
+//import { EntitySheetHelper } from "./helper.js"; 
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -26,7 +25,7 @@ export class SimpleItemSheet extends ItemSheet {
     const context = await super.getData(options);
     //EntitySheetHelper.getAttributeData(context.data);
     context.systemData = context.data.system;
-    context.dtypes = ATTRIBUTE_TYPES;
+    context.dtypes = [];
     context.descriptionHTML = await TextEditor.enrichHTML(context.systemData.description, {
       secrets: this.document.isOwner,
       async: true
@@ -42,11 +41,7 @@ export class SimpleItemSheet extends ItemSheet {
 
     // Everything below here is only needed if the sheet is editable
     if ( !this.isEditable ) return;
-
-    // Attribute Management
-    //html.find(".attributes").on("click", ".attribute-control", EntitySheetHelper.onClickAttributeControl.bind(this));
-    //html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
-    //html.find(".attributes").on("click", "a.attribute-roll", EntitySheetHelper.onAttributeRoll.bind(this));
+ 
 
     // Add draggable for Macro creation
     html.find(".attributes a.attribute-roll").each((i, a) => {

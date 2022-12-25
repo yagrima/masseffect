@@ -29,13 +29,7 @@ input::-webkit-input-placeholder {
 .tab{
   font-family: slider,'masseffect','me2';
 }
-/* overwrite foundry standards */
-.directory .directory-list{
-  overflow: hidden;
-}
-.directory .directory-item{
-  height: 56px;
-}
+
 .directory .directory-item.active {
   border-color:#0eb9fe;
   height: 56px;

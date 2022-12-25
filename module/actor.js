@@ -34,24 +34,7 @@ export class SimpleActor extends Actor {
 
   /** @inheritdoc */
   getRollData() {
-
-    // Copy the actor's system data
     const data = this.toObject(false).system;
-    const formulaAttributes = [];
-    const itemAttributes = []; 
     return data;
-  }
-
-
-
-  /** @inheritdoc */
-  async modifyTokenAttribute(attribute, value, isDelta = false, isBar = true) {
-    const current = foundry.utils.getProperty(this.system, attribute);
-    if ( !isBar || !isDelta || (current?.dtype !== "Resource") ) {
-      return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
-    }
-    const updates = {[`system.${attribute}.value`]: Math.clamped(current.value + value, current.min, current.max)};
-    const allowed = Hooks.call("modifyTokenAttribute", {attribute, value, isDelta, isBar}, updates);
-    return allowed !== false ? this.update(updates) : this;
   }
 }

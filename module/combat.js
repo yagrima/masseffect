@@ -17,13 +17,7 @@ export default class meCombat extends Combat {
         let combatant = super._prepareCombatant(c,scene,players,settings);
         //wenn INI-Wert nicht einzigartig, addiere 0.1 und versuche erneut
         return combatant;
-    }
-    async _onToggleDefeatedStatus(combatant) {
-        console.log("the skull thingy");
-        combatant.defeated = !combatant.defeated;
-        return super._onToggleDefeatedStatus(combatant);
-    }
-
+    } 
     async startCombat(){
         console.log("startCombat");
         await this.setupTurns();
@@ -33,7 +27,6 @@ export default class meCombat extends Combat {
         await super.resetAll();
         return this.update({round: 0});
     } 
-
     async rollInitiative(ids,{formula=null,updateTurn=true,messageOptions={}}={}){
         const template = "systems/masseffect/templates/chat-initiative.html";
         ids = typeof ids === "string" ? [ids] : ids;
@@ -75,3 +68,23 @@ export default class meCombat extends Combat {
         }
     }
 }
+/*    _prepareCombatant(c,scene,players,settings={}){ 
+        let combatant = super._prepareCombatant(c,scene,players,settings);
+        //wenn INI-Wert nicht einzigartig, addiere 0.1 und versuche erneut
+        return combatant;
+    }
+    async _onToggleDefeatedStatus(combatant) {
+        console.log("the skull thingy");
+        combatant.defeated = !combatant.defeated;
+        return super._onToggleDefeatedStatus(combatant);
+    }
+
+    async startCombat(){
+        console.log("startCombat");
+        await this.setupTurns();
+        return super.startCombat();
+    }
+    async resetAll() {
+        await super.resetAll();
+        return this.update({round: 0});
+    } */
