@@ -36,13 +36,11 @@ input::-webkit-input-placeholder {
 }
 li.hidden {
   background-color: #f1f1f1;
-  color: #538898;
-  display: inherit;
+  color: #538898; 
 }
 li.defeated {
   background-color: #f1f1f1;
-  color: #171614;
-  display: inherit;
+  color: #171614; 
   text-decoration: line-through;
   text-shadow: 0.1em 0.1em 0.05em #e61809;
 }
