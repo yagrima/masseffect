@@ -19,11 +19,7 @@ export async function changeInitiative(actor,wgs){
     //no need for a return statement here
 }
 export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs){ 
-    console.log(normaldice);
-    console.log(wilddice);
-    console.log(name);
-    console.log(attributes);
-    console.log(wgs);
+    console.log(normaldice+" / "+wilddice+" / "+name+" / "+attributes+" / "+wgs);
     const template = "systems/masseffect/templates/chat-attackcheck.html";
     let rollResults= [];
     let d6result = null;
@@ -87,7 +83,7 @@ export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs)
         sound: CONFIG.sounds.dice,
         content: await renderTemplate(template,templateContext)
     }
-    console.log(templateContext); 
+    /*console.log(templateContext); */
     ChatMessage.create(chatData);
 }
 

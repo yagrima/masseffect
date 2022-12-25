@@ -1,7 +1,6 @@
 import * as Dice from "./dice.js";
 import * as Initiative from "./initiative.js";
-import {masseffect} from "./library.js";
-import {ATTRIBUTE_TYPES} from "./constants.js";
+import {masseffect} from "./library.js";  
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -132,7 +131,9 @@ _onAttackRoll(event) {
 }
 _onTickButton(event){
   event.preventDefault();
-  /* TODO! */
+  let element = event.currentTarget.closest(".rollitem").dataset;
+  let wgs = element.wgs;
+  Initiative.adjustTicks(this.actor,parseInt(wgs));
 }
   /**
    * Handle click events for Item control buttons within the Actor Sheet

@@ -29,18 +29,23 @@ input::-webkit-input-placeholder {
 .tab{
   font-family: slider,'masseffect','me2';
 }
-
+/* overwrite foundry standards */
+.directory .directory-list{
+  overflow: hidden;
+}
 .directory .directory-item.active {
   border-color:#0eb9fe;
   height: 56px;
 }
 li.hidden {
   background-color: #f1f1f1;
-  color: #538898; 
+  color: #538898;
+  display: inherit;
 }
 li.defeated {
   background-color: #f1f1f1;
-  color: #171614; 
+  color: #171614;
+  display: inherit;
   text-decoration: line-through;
   text-shadow: 0.1em 0.1em 0.05em #e61809;
 }
