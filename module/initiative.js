@@ -5,5 +5,6 @@ export const _getInitiativeFormula = function() {
 };
 
 export async function adjustTicks(actor,wgs){
+    console.log("Reached adjust ticks.");
     let checkOptions = await Dialog.AdjustInitiative();
 }
