@@ -1,5 +1,6 @@
 import * as Dice from "./dice.js";
 import * as Initiative from "./initiative.js";
+import * as Listener from "./listener.js";
 import {masseffect} from "./library.js";  
 
 /**
@@ -101,86 +102,13 @@ export class SimpleActorSheet extends ActorSheet {
     if(this.actor.isOwner){}
     /* check the rest if sheet is editable */
     if(!this.isEditable) return;  
-    html.find(".generic-roll").click(this._onGenericRoll.bind(this));
-    html.find(".skill-roll").click(this._onSkillRoll.bind(this));
-    html.find(".attack-roll").click(this._onAttackRoll.bind(this));
-    html.find(".item-control").click(this._onItemControl.bind(this));
-    html.find(".tickbutton").click(this._onTickButton.bind(this));
+    // bei Auslagerung in eine fremde Klasse reicht es nicht das Event (this) mitzugeben, sondern wir brauchen 
+    // auch die Informationen des Actors this.getData()
+    html.find(".generic-roll").click(Listener.onGenericRoll.bind(this,this.getData()));
+    html.find(".skill-roll").click(Listener.onSkillRoll.bind(this,this.getData()));
+    html.find(".attack-roll").click(Listener.onAttackRoll.bind(this,this.getData())); 
+    html.find(".tickbutton").click(Listener.onTickButton.bind(this,this.getData()));
 }
-_onGenericRoll(event) {
-  event.preventDefault();
-  Dice.genericCheck(this.actor);
-}
-_onSkillRoll(event) {
-  event.preventDefault();
-  let element = event.currentTarget.closest(".rollitem").dataset;
-  let name = element.name;
-  let normal = element.normaldice;
-  let wild = element.wilddice;
-  Dice.skillCheck(this.actor,name,normal,wild);
-}
-_onAttackRoll(event) {
-  event.preventDefault();
-  let element = event.currentTarget.closest(".rollitem").dataset;
-  let name = element.name;
-  let normal = element.normaldice;
-  let wild = element.wilddice;
-  let attributes = element.attributes; 
-  let wgs = element.wgs;
-  Dice.attackCheck(this.actor,parseInt(normal),parseInt(wild),name,attributes,wgs); 
-}
-_onTickButton(event){
-  event.preventDefault();
-  let element = event.currentTarget.closest(".rollitem").dataset;
-  let wgs = element.wgs;
-  Initiative.adjustTicks(this.actor,parseInt(wgs));
-}
-  /**
-   * Handle click events for Item control buttons within the Actor Sheet
-   * @param event
-   * @private
-   */
-  _onItemControl(event) {
-    event.preventDefault();
-
-    // Obtain event data
-    const button = event.currentTarget;
-    const li = button.closest(".item");
-    const item = this.actor.items.get(li?.dataset.itemId);
-
-    // Handle different actions
-    switch ( button.dataset.action ) {
-      case "create":
-        const cls = getDocumentClass("Item");
-        return cls.create({name: game.i18n.localize("SIMPLE.ItemNew"), type: "item"}, {parent: this.actor});
-      case "edit":
-        return item.sheet.render(true);
-      case "delete":
-        return item.delete();
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Listen for roll buttons on items.
-   * @param {MouseEvent} event    The originating left click event
-   */
-  _onItemRoll(event) {
-    let button = $(event.currentTarget);
-    const li = button.parents(".item");
-    const item = this.actor.items.get(li.data("itemId"));
-    let r = new Roll(button.data('roll'), this.actor.getRollData());
-    return r.toMessage({
-      user: game.user.id,
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: `<h2>${item.name}</h2><h3>${button.text()}</h3>`
-    });
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
   _getSubmitData(updateData) {
     let formData = super._getSubmitData(updateData);
     return formData;
