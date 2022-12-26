@@ -32,9 +32,12 @@ function _processSkillCheckOptions(form){
     }
 }
 
-export async function AdjustInitiative(){
+export async function AdjustInitiative(wgs){
     const template = "systems/masseffect/templates/initiative-dialog.html";
-    const html = await renderTemplate(template, {});
+    let templateContext = {
+        wgs: wgs
+    }
+    const html = await renderTemplate(template, templateContext);
 
     return new Promise(resolve => {
         const data = {
@@ -46,7 +49,7 @@ export async function AdjustInitiative(){
                     callback: html => resolve({cancelled: true})
                 },
                 normal: {
-                    label: game.i18n.format("masseffect.chat.roll"),
+                    label: game.i18n.format("masseffect.chat.adjust"),
                     callback: html => resolve(_processIntiativeOptions(html[0].querySelector("form")))
                 }
             },

@@ -28,8 +28,8 @@ export class SimpleActorSheet extends ActorSheet {
    * https://foundryvtt.wiki/en/migrations/foundry-core-0_8_x
    * https://foundryvtt.wiki/en/migrations/foundry-core-v10
   */
-  async getData(options) {
-    const basedata = await super.getData(options);
+  getData(options) {
+    const basedata = super.getData(options);
     let sheetData = {};
     sheetData.owner = this.actor.isOwner;
     sheetData.editable = this.isEditable;

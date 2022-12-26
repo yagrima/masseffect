@@ -1,41 +1,41 @@
 {
-  "id": "masseffect",
-  "version": "0.2.1",
-  "title": "Mass Effect Sandbox",
-  "url": "https://github.com/yagrima/masseffect",
-  "description": "A minimalist game system which provides configurable Actor and Item templates to support free-form system agnostic game-play.",
-  "license": "LICENSE.txt",
-  "authors": [
-    {
-      "name": "Yagrima",
-      "email": "rene.matis89@gmail.com",
-      "discord": "Yagrima#6827",
-      "flags": {}
-    }
-  ],
-  "esmodules": [
-    "module/simple.js"
-  ],
-  "styles": [
-    "styles/simple.css"
-  ],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json",
-      "flags": {}
-    }
-  ],
-  "compatibility": {
-    "minimum": "10",
-    "verified": "10.288",
-    "maximum": "10"
-  },
-  "gridDistance": 1,
-  "gridUnits": "m",
-  "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "power",
-  "manifest": "https://github.com/yagrima/masseffect/releases/latest/download/system.json",
-  "download": "https://github.com/yagrima/masseffect/releases/download/v0.2.1/system.zip"
+    "id": "masseffect",
+    "version": "0.2.3",
+    "title": "Mass Effect Sandbox",
+    "url": "https://github.com/yagrima/masseffect",
+    "description": "A minimalist game system which provides configurable Actor and Item templates to support free-form system agnostic game-play.",
+    "license": "LICENSE.txt",
+    "authors": [
+        {
+            "name": "Yagrima",
+            "email": "rene.matis89@gmail.com",
+            "discord": "Yagrima#6827",
+            "flags": {}
+        }
+    ],
+    "esmodules": [
+        "module/simple.js"
+    ],
+    "styles": [
+        "styles/simple.css"
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json",
+            "flags": {}
+        }
+    ],
+    "compatibility": {
+        "minimum": "10",
+        "verified": "10.288",
+        "maximum": "10"
+    },
+    "gridDistance": 1,
+    "gridUnits": "m",
+    "primaryTokenAttribute": "health",
+    "secondaryTokenAttribute": "power",
+    "manifest": "https://github.com/yagrima/masseffect/releases/latest/download/system.json",
+    "download": "https://github.com/yagrima/masseffect/releases/download/v0.2.3/system.zip"
 }

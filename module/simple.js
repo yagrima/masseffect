@@ -1,6 +1,7 @@
 // Import Modules
 import meCombat from "./combat.js";
 import meCombatTracker from "./combattracker.js";
+import * as Listener from "./listener.js";
 import { _getInitiativeFormula } from "./initiative.js";
 import { SimpleActor } from "./actor.js";
 import { SimpleItem } from "./item.js";
@@ -77,7 +78,11 @@ Hooks.once("init", async function() {
   });
   // Preload template partials
 });
+//das Folgende kann auch den CombatTracker hören
+Hooks.once("renderChatMessage", function () {
+  $(document).on('click', '.test', function (event) { Listener.testFunc(event) })
 
+});
 /**
  * Macrobar hook.
  */

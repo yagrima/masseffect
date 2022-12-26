@@ -13,12 +13,7 @@ export async function genericCheck(actor){
     if(checkOptions.cancelled) return;
     return doDiceMagic(actor,checkOptions.normaldice,checkOptions.wilddice,game.i18n.localize("masseffect.genericdiceroll"));
 }
-export async function changeInitiative(actor,wgs){
-    let checkOptions = await Dialog.AdjustInitiative(wgs)
-    if(checkOptions.cancelled) return;
-    //no need for a return statement here
-}
-export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs){ 
+export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs,damagecode){ 
     console.log(normaldice+" / "+wilddice+" / "+name+" / "+attributes+" / "+wgs);
     const template = "systems/masseffect/templates/chat-attackcheck.html";
     let rollResults= [];
@@ -69,6 +64,8 @@ export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs)
         name: name,
         attributes: attributes,
         wgs: wgs,
+        damagecode: damagecode,
+        actor: actor._id,
         d6result: rollResults[0],
         rollResults: rollResults,
         noSuccesses: noSuccesses,
@@ -82,8 +79,7 @@ export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs)
         roll: d6result, /*?*/
         sound: CONFIG.sounds.dice,
         content: await renderTemplate(template,templateContext)
-    }
-    /*console.log(templateContext); */
+    } 
     ChatMessage.create(chatData);
 }
 
