@@ -24,9 +24,9 @@ export async function onGenericRoll(actordata,event) {
     let damagecode = element.dcode;
     Dice.attackCheck(actordata.actor,parseInt(normal),parseInt(wild),name,attributes,wgs,damagecode); 
   }
-  export async function testFunc(event){
+  export async function adjustInitiative(event){
     event.preventDefault();
-    let element = event.currentTarget.closest(".item").dataset;
+    let element = event.currentTarget.closest(".rollitem").dataset;
     let wgs = element.wgs;
     let actorId = element.actor;
     let actor = game.actors.get(actorId);
@@ -62,4 +62,15 @@ export async function onGenericRoll(actordata,event) {
         content: await renderTemplate(template,templateContext)
     } 
     ChatMessage.create(chatData);
+  }
+  export async function rollDamageCode(event){
+    event.preventDefault();
+    let element = event.currentTarget.closest(".rollitem").dataset;
+    let damagecode = element.code;
+    console.log(damagecode);
+    let attributes = element.attributes;
+    console.log(attributes);
+    let actorId = element.actor;
+    let actor = game.actors.get(actorId);
+
   }

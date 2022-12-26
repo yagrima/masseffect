@@ -107,7 +107,6 @@ export class SimpleActorSheet extends ActorSheet {
     html.find(".generic-roll").click(Listener.onGenericRoll.bind(this,this.getData()));
     html.find(".skill-roll").click(Listener.onSkillRoll.bind(this,this.getData()));
     html.find(".attack-roll").click(Listener.onAttackRoll.bind(this,this.getData())); 
-    html.find(".tickbutton").click(Listener.onTickButton.bind(this,this.getData()));
 }
   _getSubmitData(updateData) {
     let formData = super._getSubmitData(updateData);

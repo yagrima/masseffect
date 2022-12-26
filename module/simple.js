@@ -80,8 +80,8 @@ Hooks.once("init", async function() {
 });
 //das Folgende kann auch den CombatTracker hören
 Hooks.once("renderChatMessage", function () {
-  $(document).on('click', '.test', function (event) { Listener.testFunc(event) })
-
+  $(document).on('click', '.ini', function (event) { Listener.adjustInitiative(event) });
+  $(document).on('click', '.dcode', function (event) { Listener.rollDamageCode(event) });
 });
 /**
  * Macrobar hook.
