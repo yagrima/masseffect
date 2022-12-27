@@ -83,6 +83,76 @@ export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs,
     ChatMessage.create(chatData);
 }
 
+export async function damageCodeDeck(actor,damagecode,attributes){
+    //stelle Merkmale des Schadenswurfes fest
+    let levelKritisch = 0;
+    if(attributes.indexOf("Kritisch") > -1) {
+      levelKritisch = attributes.charAt(attributes.indexOf("Kritisch")+9);
+    }
+    let levelScharf = 1;
+    if(attributes.indexOf("Scharf") > -1) {
+      levelScharf = attributes.charAt(attributes.indexOf("Scharf")+7);
+    }
+    let isExakt = false;
+    if(attributes.indexOf("Exakt") > -1) isExakt = true;
+    let numberOfDice = damagecode.charAt(0);
+    let rollResults = [];
+    const rollformula = "1d6";
+    //increase number of rolled dices by 1 for Exakt
+    if(isExakt) numberOfDice++;
+    for(let i=0;i<numberOfDice;i++){
+      let d6result = await new Roll(rollformula,{}).roll({async: true});
+      let diceresult = d6result.terms[0].results[0].result;
+      rollResults[i] = {"diceroll": diceresult.toString(),"isWild": false};
+    }
+    if(isExakt) {
+      let smallestDiceFound = false;
+      for(let j=1;j<7;j++){
+        for(let i=0;i<rollResults.length;i++){
+          if(rollResults[i].diceroll == j.toString() && !smallestDiceFound){
+            rollResults[i].isWild = true;
+            smallestDiceFound = true;
+            continue;
+          }
+        }
+        if(smallestDiceFound) continue;
+      }
+    }
+    for(let i=0;i<rollResults.length;i++){
+      if(levelScharf > 1){
+        if(parseInt(rollResults[i].diceroll)<levelScharf){
+          rollResults[i].diceroll = levelScharf.toString();
+        }
+      }
+      if(levelKritisch > 0){
+        if(rollResults[i].diceroll == "6"){
+          rollResults[i].diceroll = (parseInt(rollResults[i].diceroll)+parseInt(levelKritisch)).toString();
+        }
+      }
+    } 
+    let total = damagecode.charAt(3);
+    for(let i=0;i<rollResults.length;i++){
+        total += rollResults[i].diceroll;
+    }
+    const template = "systems/masseffect/templates/chat-damageroll.html";
+
+    let templateContext = { 
+        d6result: rollResults[0],
+        rollResults: rollResults, 
+        total: total,
+        exakt: isExakt,
+        levelScharf: levelScharf,
+        levelKritisch: levelKritisch
+    }
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({actor}),
+        roll: d6result, /*?*/
+        sound: CONFIG.sounds.dice,
+        content: await renderTemplate(template,templateContext)
+    }
+}
+
 export async function doDiceMagic(actor,normaldice,wilddice,name){
     console.log("initial check: "+normaldice+" ("+typeof normaldice+"), "+wilddice+" ("+typeof wilddice+"), "+name);
     const template = "systems/masseffect/templates/chat-skillcheck.html";
