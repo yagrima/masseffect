@@ -2,8 +2,7 @@ import * as Dialog from "./dialog.js";
 
 
 /*with skill input*/
-export async function skillCheck(actor,name,normal,wild){
-    console.log("skill check: "+normal+","+wild+", "+name);
+export async function skillCheck(actor,name,normal,wild){ 
     return doDiceMagic(actor,parseInt(normal),parseInt(wild),game.i18n.localize("masseffect.skills."+name));
 }
 
@@ -13,8 +12,7 @@ export async function genericCheck(actor){
     if(checkOptions.cancelled) return;
     return doDiceMagic(actor,checkOptions.normaldice,checkOptions.wilddice,game.i18n.localize("masseffect.genericdiceroll"));
 }
-export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs,damagecode){ 
-    console.log(normaldice+" / "+wilddice+" / "+name+" / "+attributes+" / "+wgs);
+export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs,damagecode){  
     const template = "systems/masseffect/templates/chat-attackcheck.html";
     let rollResults= [];
     let d6result = null;
@@ -54,9 +52,7 @@ export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs,
         isFumble = true;
         if(noSuccesses <= 0){
             isCritical = true;
-            console.log("Critical Failure!")
         } else {
-            console.log("Fumble!")
         }
     }
     /* do chat output*/
@@ -84,7 +80,9 @@ export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs,
 }
 
 export async function damageCodeDeck(actor,damagecode,attributes){
+    console.log("starting damageCodeCheck");
     //stelle Merkmale des Schadenswurfes fest
+    let d6result = 0;
     let levelKritisch = 0;
     if(attributes.indexOf("Kritisch") > -1) {
       levelKritisch = attributes.charAt(attributes.indexOf("Kritisch")+9);
@@ -101,7 +99,7 @@ export async function damageCodeDeck(actor,damagecode,attributes){
     //increase number of rolled dices by 1 for Exakt
     if(isExakt) numberOfDice++;
     for(let i=0;i<numberOfDice;i++){
-      let d6result = await new Roll(rollformula,{}).roll({async: true});
+      d6result = await new Roll(rollformula,{}).roll({async: true});
       let diceresult = d6result.terms[0].results[0].result;
       rollResults[i] = {"diceroll": diceresult.toString(),"isWild": false};
     }
@@ -130,20 +128,25 @@ export async function damageCodeDeck(actor,damagecode,attributes){
         }
       }
     } 
-    let total = damagecode.charAt(3);
+    let total = parseInt(damagecode.charAt(4));
     for(let i=0;i<rollResults.length;i++){
-        total += rollResults[i].diceroll;
+        total += parseInt(rollResults[i].diceroll);
     }
     const template = "systems/masseffect/templates/chat-damageroll.html";
-
+    //for output purposes
+    let attributeDisplayed = isExakt ? true : (levelKritisch > 0 || levelScharf > 0 ? true : false);
     let templateContext = { 
         d6result: rollResults[0],
         rollResults: rollResults, 
         total: total,
         exakt: isExakt,
         levelScharf: levelScharf,
-        levelKritisch: levelKritisch
+        levelKritisch: levelKritisch,
+        attributes: attributes,
+        attributeDisplayed: attributeDisplayed
     }
+    console.log(template);
+    console.log(templateContext);
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({actor}),
@@ -153,8 +156,7 @@ export async function damageCodeDeck(actor,damagecode,attributes){
     }
 }
 
-export async function doDiceMagic(actor,normaldice,wilddice,name){
-    console.log("initial check: "+normaldice+" ("+typeof normaldice+"), "+wilddice+" ("+typeof wilddice+"), "+name);
+export async function doDiceMagic(actor,normaldice,wilddice,name){ 
     const template = "systems/masseffect/templates/chat-skillcheck.html";
     let rollResults = [];
     let d6result = null;
@@ -193,11 +195,8 @@ export async function doDiceMagic(actor,normaldice,wilddice,name){
     if(noFumbleElements >= (normaldice+wilddice)/3){
         isFumble = true;
         if(noSuccesses <= 0){
-            isCritical = true;
-            console.log("Critical Failure!")
-        } else {
-            console.log("Fumble!")
-        }
+            isCritical = true; 
+        } 
     }
     
     /* do chat output*/
@@ -215,8 +214,6 @@ export async function doDiceMagic(actor,normaldice,wilddice,name){
         roll: d6result, /*?*/
         sound: CONFIG.sounds.dice,
         content: await renderTemplate(template,templateContext)
-    }
-    console.log(templateContext);
-    //console.log("HTML Preview: "+chatData.content);
+    } 
     ChatMessage.create(chatData);
 }

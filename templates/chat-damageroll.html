@@ -1,0 +1,33 @@
+<div class="masseffect chat message">
+    <!-- Kopf mit Initative: <Formel>-->
+    <div class="chatborder headline">SCHADEN: {{formula}}</div>
+    {{#if attributeDisplayed}}
+    <div class="chatborder headline">{{attributes}}</div>
+    {{/if}}
+    <div class="dicefield">
+        {{#each rollResults}}
+            <div class="inidice">
+                {{#if isWild}}   
+                    {{#if (eq result 1)}} <img src="systems/masseffect/img/D6_1grey.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq result 2)}} <img src="systems/masseffect/img/D6_2grey.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq result 3)}} <img src="systems/masseffect/img/D6_3grey.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq result 4)}} <img src="systems/masseffect/img/D6_4grey.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq result 5)}} <img src="systems/masseffect/img/D6_5grey.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq result 6)}} <img src="systems/masseffect/img/D6_6grey.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                {{/if}}
+                {{#unless isWild}}
+                    {{#if (eq result 1)}} <img src="systems/masseffect/img/D6_1blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq result 2)}} <img src="systems/masseffect/img/D6_2blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq result 3)}} <img src="systems/masseffect/img/D6_3blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq result 4)}} <img src="systems/masseffect/img/D6_4blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq result 5)}} <img src="systems/masseffect/img/D6_5blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                    {{#if (eq result 6)}} <img src="systems/masseffect/img/D6_6blue.svg" width="24" height="24" style="border:none;"/> {{/if}}
+                {{/unless}}
+            </div>
+        {{/each}}
+    </div>
+    <!-- darunter das Endergebnis-->
+    <div class="successes">
+        STARTERGEBNIS: {{total}}
+    </div>
+</div> 
