@@ -80,19 +80,20 @@ export async function attackCheck(actor,normaldice,wilddice,name,attributes,wgs,
 }
 
 export async function damageCodeDeck(actor,damagecode,attributes){
+    attributes = attributes.toLowerCase();
     console.log("starting damageCodeCheck");
     //stelle Merkmale des Schadenswurfes fest
     let d6result = 0;
     let levelKritisch = 0;
-    if(attributes.indexOf("Kritisch") > -1) {
-      levelKritisch = attributes.charAt(attributes.indexOf("Kritisch")+9);
+    if(attributes.indexOf("kritisch") > -1) {
+      levelKritisch = attributes.charAt(attributes.indexOf("kritisch")+9);
     }
     let levelScharf = 1;
-    if(attributes.indexOf("Scharf") > -1) {
-      levelScharf = attributes.charAt(attributes.indexOf("Scharf")+7);
+    if(attributes.indexOf("scharf") > -1) {
+      levelScharf = attributes.charAt(attributes.indexOf("scharf")+7);
     }
     let isExakt = false;
-    if(attributes.indexOf("Exakt") > -1) isExakt = true;
+    if(attributes.indexOf("exakt") > -1) isExakt = true;
     let numberOfDice = damagecode.charAt(0);
     let rollResults = [];
     const rollformula = "1d6";
@@ -130,7 +131,7 @@ export async function damageCodeDeck(actor,damagecode,attributes){
     } 
     let total = parseInt(damagecode.charAt(4));
     for(let i=0;i<rollResults.length;i++){
-        total += parseInt(rollResults[i].diceroll);
+        total += rollResults[i].isWild ? 0 : parseInt(rollResults[i].diceroll);
     }
     const template = "systems/masseffect/templates/chat-damageroll.html";
     //for output purposes
@@ -141,12 +142,12 @@ export async function damageCodeDeck(actor,damagecode,attributes){
         total: total,
         exakt: isExakt,
         levelScharf: levelScharf,
+        damagecode: damagecode,
         levelKritisch: levelKritisch,
-        attributes: attributes,
+        attributes: attributes.toUpperCase(),
         attributeDisplayed: attributeDisplayed
     }
-    console.log(template);
-    console.log(templateContext);
+    console.log(rollResults); 
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({actor}),
@@ -154,6 +155,7 @@ export async function damageCodeDeck(actor,damagecode,attributes){
         sound: CONFIG.sounds.dice,
         content: await renderTemplate(template,templateContext)
     }
+    ChatMessage.create(chatData);
 }
 
 export async function doDiceMagic(actor,normaldice,wilddice,name){ 
