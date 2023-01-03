@@ -426,9 +426,9 @@ hr.normalmargin {
   text-align: center;
   width: 10%;
 }
-.combat-header {
+/*.combat-header {
   height: 50px;
-}
+}*/
 .combat-headline{
   display: inline-block;
   text-align: center;

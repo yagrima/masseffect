@@ -1,6 +1,6 @@
 {
     "id": "masseffect",
-    "version": "0.2.3",
+    "version": "0.3",
     "title": "Mass Effect Sandbox",
     "url": "https://github.com/yagrima/masseffect",
     "description": "A minimalist game system which provides configurable Actor and Item templates to support free-form system agnostic game-play.",
@@ -37,5 +37,5 @@
     "primaryTokenAttribute": "health",
     "secondaryTokenAttribute": "power",
     "manifest": "https://github.com/yagrima/masseffect/releases/latest/download/system.json",
-    "download": "https://github.com/yagrima/masseffect/releases/download/v0.2.3/system.zip"
+    "download": "https://github.com/yagrima/masseffect/releases/download/v0.3/system.zip"
 }

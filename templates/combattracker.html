@@ -27,7 +27,7 @@
             </a>
         </nav>
         {{/if}}
-
+        <!-- Ende der oberen Kopfleiste-->
         <nav class="encounters {{#if hasCombat}}combat{{/if}}">
             {{#if user.isGM}}
             <a class="combat-control" title="{{localize 'COMBAT.RollAll'}}" data-control="rollAll" {{#unless turns}}disabled{{/unless}}>
@@ -73,10 +73,11 @@
             {{/if}}
         </nav>
     </header>
-
+    <!-- Ende Header -->
     <hr class="normalmargin">
     <ol id="combat-tracker" class="directory-list">
         {{#each turns}}
+        <!-- Beginn Kampfteilnehmer -->
         <li class="combatant actor directory-item {{this.css}}" data-combatant-id="{{this.id}}">
             <div class="combatant-image">
                 <img class="combatant-image" data-src="{{this.img}}" title="{{this.name}}"/>
