@@ -399,7 +399,8 @@
     "health": {
       "value": 30,
       "min": 0,
-      "max": 30
+      "max": 30,
+      "healthpercent": 75
     },
     "power": {
       "value": 5,

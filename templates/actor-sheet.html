@@ -1,11 +1,24 @@
 <form class="flexcol {{cssClass}}" autocomplete="off">
 
     {{!-- Sheet Header --}}
-    <header class="sheet-header">
+    <header class="sheet-header"> 
         <div class="fullwidth">
-            <div class="halftab">LEBENSPUNKTE</div>
-            <div class="halftab"><hr></div>
+            <div class="progress">
+                <div class="statusbar">
+                    <div class="bar_fill barrier" style="width: 100%;">
+                        BARRIERE
+                    </div>
+                </div>
+            </div>   
         </div>
+        <div class="spacer"></div>
+        <div class="progress">
+            <div class="statusbar">
+                LEBENSPUNKTE
+                <div class="bar_fill health" style="width: 70%;">
+                </div>
+            </div>
+        </div>   
         <div class="fullwidth">
             <div class="halftab">AUSRÜSTUNGSPUNKTE</div>
             <div class="halftab"><hr></div>
