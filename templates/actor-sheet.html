@@ -5,17 +5,20 @@
         <div class="fullwidth">
             <div class="progress">
                 <div class="statusbar">
-                    <div class="bar_fill barrier" style="width: 100%;">
-                        BARRIERE
+                    BARRIERE
+                    <div class="bar_fill" style="background-color: #0eb9fe; width: 100%;">
                     </div>
                 </div>
             </div>   
+            <input class="headboxsmall" type="number" name="system.health.current.value" value="{{data.health.value}}">
+            <input class="headboxsmall" type="number" name="system.health.current.max" value="{{data.health.max}}">
         </div>
-        <div class="spacer"></div>
+        <div class="fullwidthspacer">
+        </div>
         <div class="progress">
             <div class="statusbar">
                 LEBENSPUNKTE
-                <div class="bar_fill health" style="width: 70%;">
+                <div class="bar_fill" style="background-color: #e61809; width: 70%;">
                 </div>
             </div>
         </div>   
