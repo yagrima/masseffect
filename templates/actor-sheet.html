@@ -10,26 +10,45 @@
                     </div>
                 </div>
             </div>   
-            <input class="headboxsmall" type="number" name="system.health.current.value" value="{{data.health.value}}">
-            <input class="headboxsmall" type="number" name="system.health.current.max" value="{{data.health.max}}">
+            <input class="headboxsmall" type="number" name="system.barrier.current.value" value="{{data.barrier.value}}">
+            <input class="headboxsmall" type="number" name="system.barrier.current.maxvalue" value="{{data.barrier.maxvalue}}">
+            <a class="rollitem shielddamagetaken" title="roll"><i class="fa-solid fa-burst"></i></a>
+            <a class="rollitem regeneratebarrier" title="roll"><i class="fa-solid fa-shield-plus"></i></a>
         </div>
         <div class="fullwidthspacer">
         </div>
-        <div class="progress">
-            <div class="statusbar">
-                LEBENSPUNKTE
-                <div class="bar_fill" style="background-color: #e61809; width: 70%;">
+        <div class="fullwidth">
+            <div class="progress">
+                <div class="statusbar">
+                    LEBENSPUNKTE
+                    <div class="bar_fill" style="background-color: #e61809; width: 70%;">
+                    </div>
                 </div>
-            </div>
-        </div>   
+            </div>   
+            <input class="headboxsmall" type="number" name="system.health.current.value" value="{{data.health.value}}">
+            <input class="headboxsmall" type="number" name="system.health.current.maxvalue" value="{{data.health.maxvalue}}">
+            <a class="rollitem damagetaken" title="roll"><i class="fa-solid fa-droplet"></i></a>
+            <a class="rollitem healing" title="roll"><i class="fa-solid fa-kit-medical"></i></a>
+        </div>
+        <div class="fullwidthspacer">
+        </div>
+        <div class="fullwidth">
+            <div class="progress">
+                <div class="statusbar">
+                    KRAFTPUNKTE
+                    <div class="bar_fill" style="background-color: #538898; width: 100%;">
+                    </div>
+                </div>
+            </div>   
+            <input class="headboxsmall" type="number" name="system.power.current.value" value="{{data.power.value}}">
+            <input class="headboxsmall" type="number" name="system.power.current.maxvalue" value="{{data.power.maxvalue}}">
+            <a class="rollitem usepower" title="roll"><i class="fa-solid fa-bahai"></i></a>
+            <a class="rollitem replenishpower" title="roll"><i class="fa-solid fa-head-side-medical"></i></a>
+        </div>
         <div class="fullwidth">
             <div class="halftab">AUSRÜSTUNGSPUNKTE</div>
             <div class="halftab"><hr></div>
-        </div>
-        <div class="fullwidth">
-            <div class="halftab">KRAFTPUNKTE</div>
-            <div class="halftab"><hr></div>
-        </div>
+        </div> 
         <div class="fullwidth">
             <div class="halftab">KAMPFPOOL</div>
             <div class="halftab"><hr></div>
@@ -66,8 +85,7 @@
         <a class="item" data-tab="attributes">ALLGEMEINES</a>
         <a class="item" data-tab="skills">FERTIGKEITEN</a>
         <a class="item" data-tab="combat">KAMPF</a>
-        <a class="item" data-tab="items">AUSRÜSTUNG</a>
-        
+        <a class="item" data-tab="items">AUSRÜSTUNG</a>        
     </nav>
 
     {{!-- Sheet Body --}}
