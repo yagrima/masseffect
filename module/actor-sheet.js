@@ -45,6 +45,7 @@ export class SimpleActorSheet extends ActorSheet {
     derived.memory = Math.round(attributes.brains.current + attributes.tech.current + attributes.luck.current/2);
     derived.liftcarry = Math.round(attributes.body.current + attributes.size.current + attributes.luck.current/2);
     derived.composure = Math.round(attributes.brains.current + attributes.personality.current + attributes.luck.current/2);
+    this._calculateResourcePercentages(sheetData);
     /*initiative calculation, check for several (dis)advantages and talents*/
     derived.initiative = this._calculateInitiative(sheetData);
     CONFIG.Combat.initiative = derived.initiative;
@@ -53,9 +54,14 @@ export class SimpleActorSheet extends ActorSheet {
     this._calculateSkillpools(sheetData);
     return sheetData;
   }
+  _calculateResourcePercentages(sheetData){
+    sheetData.data.health.healthpercent = 100*sheetData.data.health.value/sheetData.data.health.max;
+    sheetData.data.barrier.barrierpercent = 100*sheetData.data.barrier.value/sheetData.data.barrier.max;
+    sheetData.data.power.powerpercent = 100*sheetData.data.power.value/sheetData.data.power.max;
+    sheetData.data.exhaustion.exhaustionpercent = 100*sheetData.data.exhaustion.value/sheetData.data.exhaustion.max;
+  }
   _calculateSkillpools(sheetData){
     for(let a in masseffect.skillsshort){
-      //console.log(a+" > "+this._calculateAttributeNumber(sheetData,sheetData.data.skills[a].primary)+" + "+this._calculateAttributeNumber(sheetData,sheetData.data.skills[a].secondary)/2+" + "+sheetData.data.skills[a].value+" + "+sheetData.data.skills[a].bonusnormal);
       sheetData.data.skills[a].dicepoolnormal = Math.round(this._calculateAttributeNumber(sheetData,sheetData.data.skills[a].primary) + this._calculateAttributeNumber(sheetData,sheetData.data.skills[a].secondary)/2 + sheetData.data.skills[a].value + sheetData.data.skills[a].bonusnormal);
       sheetData.data.skills[a].dicepoolwild =sheetData.data.skills[a].bonuswild;
     }
@@ -104,6 +110,12 @@ export class SimpleActorSheet extends ActorSheet {
     if(!this.isEditable) return;  
     // bei Auslagerung in eine fremde Klasse reicht es nicht das Event (this) mitzugeben, sondern wir brauchen 
     // auch die Informationen des Actors this.getData()
+    html.find(".shielddamagetaken").click(Listener.onShieldDamgeTaken.bind(this,this.getData()));
+    html.find(".regeneratebarrier").click(Listener.onRegenerateBarrier.bind(this,this.getData()));
+    html.find(".damagetaken").click(Listener.onDamageTaken.bind(this,this.getData()));
+    html.find(".healing").click(Listener.onHealing.bind(this,this.getData()));
+    html.find(".usepower").click(Listener.onUsePower.bind(this,this.getData()));
+    html.find(".replenishpower").click(Listener.onReplenishPower.bind(this,this.getData()));
     html.find(".generic-roll").click(Listener.onGenericRoll.bind(this,this.getData()));
     html.find(".skill-roll").click(Listener.onSkillRoll.bind(this,this.getData()));
     html.find(".attack-roll").click(Listener.onAttackRoll.bind(this,this.getData())); 

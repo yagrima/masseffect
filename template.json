@@ -403,6 +403,13 @@
       "max": 100,
       "healthpercent": 75
     },
+    "barrier": {
+      "value": 6,
+      "maxvalue": 6,
+      "min": 0,
+      "max": 25,
+      "barrierpercent": 100
+    },
     "power": {
       "value": 15,
       "maxvalue": 15,
@@ -416,13 +423,6 @@
       "min": 0,
       "max": 10,
       "exhaustionpercent": 100
-    },
-    "barrier": {
-      "value": 6,
-      "maxvalue": 6,
-      "min": 0,
-      "max": 25,
-      "barrierpercent": 100
     }
   }
 },

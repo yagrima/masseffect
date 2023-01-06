@@ -1,6 +1,17 @@
 import * as Dice from "./dice.js";
 import * as Dialog from "./dialog.js";
 
+export async function onShieldDamgeTaken(actordata,event) {
+  event.preventDefault();
+  let element = event.currentTarget.closest(".rollitem").dataset;
+  let damageOptions = await Dialog.AdjustInitiative(wgs);
+}
+export async function onRegenerateBarrier(actordata,event) {}
+export async function onDamageTaken(actordata,event) {}
+export async function onHealing(actordata,event) {}
+export async function onUsePower(actordata,event) {}
+export async function onReplenishPower(actordata,event) {}
+
 export async function onGenericRoll(actordata,event) {
     event.preventDefault();
     Dice.genericCheck(actordata.actor);
@@ -34,7 +45,7 @@ export async function onGenericRoll(actordata,event) {
     if (!game.combats?.active) return;
     //if (!actor.canUserModify(game.user, "update")) return;
     const combatant = game.combats.active.getCombatantByActor(actorId);
-    let checkOptions = await Dialog.AdjustInitiative(wgs)
+    let checkOptions = await Dialog.AdjustInitiative(wgs);
     if(checkOptions.cancelled) return;
     let newInitiative = parseInt(combatant.initiative) + checkOptions.realwgs
     //check if Tick is already in use, if so, increase by 0.01
