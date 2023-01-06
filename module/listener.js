@@ -3,6 +3,7 @@ import * as Dialog from "./dialog.js";
 
 export async function onShieldDamgeTaken(actordata,event) {
   event.preventDefault();
+  let actor = actordata.actor;
   let element = event.currentTarget.closest(".rollitem").dataset;
   let damageOptions = await Dialog.MonitorAttackData();
   console.log("Input done");
@@ -31,7 +32,8 @@ export async function onShieldDamgeTaken(actordata,event) {
     reducedbarrier += damageOptions.overcharge > 0 ? damageOptions.overcharge : 0;
     actordata.data.barrier.value -= reducedbarrier;
   }
-  actordata.data.health.value -= reducedhealth; 
+  if(reducedhealth<0){reducedhealth=0;}
+  actordata.data.health.value -= reducedhealth;
   let speaker = actordata.actor;
   //create chat output
   const template = "systems/masseffect/templates/chat-damageconfirmation.html";
