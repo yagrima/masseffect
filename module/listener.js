@@ -4,7 +4,50 @@ import * as Dialog from "./dialog.js";
 export async function onShieldDamgeTaken(actordata,event) {
   event.preventDefault();
   let element = event.currentTarget.closest(".rollitem").dataset;
-  let damageOptions = await Dialog.AdjustInitiative(wgs);
+  let damageOptions = await Dialog.MonitorAttackData();
+  console.log("Input done");
+  if(damageOptions.cancelled) return;
+  if(damageOptions.damage < 0) return; //i see you, shitheads :D
+  let reducedbarrier = 1;
+  let reducedhealth = 0;
+  if(damageOptions.isShieldbreaker){
+    console.log("Ignoring barrier due to shieldbreaker");
+    if(damageOptions.automatics > 0 && damageOptions.hasHardenedArmor){
+      //erhöhe Panzerung um Stufe Automatik
+      reducedhealth =  damageOptions.damage - (damageOptions.armor + damageOptions.automatics);
+    } else {
+      console.log("Normal shieldbreaker process");
+      reducedhealth = damageOptions.damage - damageOptions.armor;
+    }
+  } else {
+    if(damageOptions.automatics > 0 && damageOptions.hasHardenedArmor){
+      reducedhealth = damageOptions.damage - actordata.data.barrier.value - (damageOptions.armor + damageOptions.automatics);
+    } else {
+      reducedhealth = damageOptions.damage - actordata.data.barrier.value - damageOptions.armor;
+      console.log(reducedhealth);
+    } 
+    reducedbarrier += damageOptions.automatics > 0 ? 2 : 0;
+    reducedbarrier += damageOptions.isSalve ? 1 : 0;
+    reducedbarrier += damageOptions.overcharge > 0 ? damageOptions.overcharge : 0;
+    actordata.data.barrier.value -= reducedbarrier;
+  }
+  actordata.data.health.value -= reducedhealth; 
+  let speaker = actordata.actor;
+  //create chat output
+  const template = "systems/masseffect/templates/chat-damageconfirmation.html";
+  let templateContext = {
+    damage: damageOptions.damage,
+    reducedbarrier: reducedbarrier,
+    reducedhealth: reducedhealth
+  };
+  let chatData = {
+    user: game.user.id,
+    speaker: ChatMessage.getSpeaker({speaker}),
+    sound: CONFIG.sounds.dice,
+    content: await renderTemplate(template,templateContext)
+  } 
+  ChatMessage.create(chatData);
+  actordata.actor.render(); 
 }
 export async function onRegenerateBarrier(actordata,event) {}
 export async function onDamageTaken(actordata,event) {}

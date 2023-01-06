@@ -1,3 +1,4 @@
+
 export async function GetSkillCheckOptions() {
 
     const template = "systems/masseffect/templates/skillcheck-dialog.html";
@@ -64,5 +65,43 @@ export async function AdjustInitiative(wgs){
 function _processIntiativeOptions(form){
     return {
         realwgs: parseInt(form.wgs.value)
+    }
+}
+
+export async function MonitorAttackData() {
+    const template = "systems/masseffect/templates/shielddamage-dialog.html";
+    const html = await renderTemplate(template, {});
+
+    return new Promise(resolve => {
+        const data = {
+            title: game.i18n.format("masseffect.chat.sufferdamage"),
+            content: html,
+            buttons: {
+                cancel: {
+                    label: game.i18n.format("masseffect.chat.cancel"),
+                    callback: html => resolve({cancelled: true})
+                },
+                normal: {
+                    label: game.i18n.format("masseffect.chat.inflict"),
+                    callback: html => resolve(_processShieldDamageOptions(html[0].querySelector("form")))
+                }
+            },
+            default: "normal",
+            closed: () => resolve({cancelled: true})
+        };
+
+        new Dialog(data, null).render(true);
+    });
+} 
+
+function _processShieldDamageOptions(form){
+    return {
+        damage: parseInt(form.damage.value),
+        automatics: parseInt(form.automatics.value),
+        overcharge: parseInt(form.overcharge.value),
+        isSalve: form.isSalve.checked,
+        isShieldbreaker: form.isShieldbreaker.checked,
+        hasHardenedArmor: form.hasHardenedArmor.checked,
+        armor: parseInt(form.armor.value),
     }
 }

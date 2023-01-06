@@ -66,16 +66,7 @@ Hooks.once("init", async function() {
   });
   Handlebars.registerHelper("getSkillInfo", function(object, value, type) {
     return object[value][type];
-  });
-  Handlebars.registerHelper("getDebugInfo", function(object, value, type) {
-    console.log("############### GETDEBUGINFO starts");
-    console.log(object);
-    console.log("value: "+value);
-    console.log("type: "+type);
-    console.log(object[value][type]);
-    console.log("############### GETDEBUGINFO ends");
-    return object[value][type];
-  });
+  }); 
   // Preload template partials
 });
 //das Folgende kann auch den CombatTracker hören
