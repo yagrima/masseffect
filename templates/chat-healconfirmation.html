@@ -1,0 +1,13 @@
+<div class="masseffect chat message">
+    <div class="chatborder headline">HEILUNG / REGENERATION</div>
+    {{#unless (eq heal 0)}}
+        <div class="chatborder headline">
+            GESUNDHEIT ERHÖHT UM {{heal}}
+        </div>
+    {{/unless}}
+    {{#unless (eq exhaustion 0)}}
+        <div class="chatborder headline">
+            ERSCHÖPFUNG REDUZIERT UM {{exhaustion}}
+        </div>
+    {{/unless}}
+</div>

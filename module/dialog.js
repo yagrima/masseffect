@@ -105,3 +105,71 @@ function _processShieldDamageOptions(form){
         armor: parseInt(form.armor.value),
     }
 }
+
+export async function MonitorDamageData(){
+    const template = "systems/masseffect/templates/dialog-directdamage.html";
+    const html = await renderTemplate(template, {});
+
+    return new Promise(resolve => {
+        const data = {
+            title: game.i18n.format("masseffect.chat.sufferdamage"),
+            content: html,
+            buttons: {
+                cancel: {
+                    label: game.i18n.format("masseffect.chat.cancel"),
+                    callback: html => resolve({cancelled: true})
+                },
+                normal: {
+                    label: game.i18n.format("masseffect.chat.inflict"),
+                    callback: html => resolve(_processDirectDamageOptions(html[0].querySelector("form")))
+                }
+            },
+            default: "normal",
+            closed: () => resolve({cancelled: true})
+        };
+
+        new Dialog(data, null).render(true);
+    });
+}
+function _processDirectDamageOptions(form){
+    return {
+        damage: parseInt(form.damage.value), 
+        armor: parseInt(form.armor.value),
+    }
+}
+
+export async function MonitorHealingData(attributeBody){
+    const template = "systems/masseffect/templates/dialog-healing.html"; 
+    let templateContext = {
+        body: attributeBody,
+        doublebody: attributeBody*2
+    }
+    const html = await renderTemplate(template, templateContext);
+
+    return new Promise(resolve => {
+        const data = {
+            title: game.i18n.format("masseffect.chat.healdamage"),
+            content: html,
+            buttons: {
+                cancel: {
+                    label: game.i18n.format("masseffect.chat.cancel"),
+                    callback: html => resolve({cancelled: true})
+                },
+                normal: {
+                    label: game.i18n.format("masseffect.chat.heal"),
+                    callback: html => resolve(_processHealOptions(html[0].querySelector("form")))
+                }
+            },
+            default: "normal",
+            closed: () => resolve({cancelled: true})
+        };
+
+        new Dialog(data, null).render(true);
+    });
+}
+function _processHealOptions(form){
+    return {
+        health: parseInt(form.health.value), 
+        exhaustion: parseInt(form.exhaustion.value),
+    }
+}

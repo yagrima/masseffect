@@ -22,6 +22,9 @@ input::-webkit-input-placeholder {
   src: url('slider.ttf'),
   format('truetype');
 }
+.hide {
+  visibility: hidden;
+}
 .chat-message {
   background: #f1f1f1;
   font-family: slider,'masseffect','me2';

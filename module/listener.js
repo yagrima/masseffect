@@ -1,59 +1,37 @@
 import * as Dice from "./dice.js";
 import * as Dialog from "./dialog.js";
 
-export async function onShieldDamgeTaken(actordata,event) {
+export async function onHealing(actordata,event) {
   event.preventDefault();
-  let actor = actordata.actor;
-  let element = event.currentTarget.closest(".rollitem").dataset;
-  let damageOptions = await Dialog.MonitorAttackData();
-  console.log("Input done");
-  if(damageOptions.cancelled) return;
-  if(damageOptions.damage < 0) return; //i see you, shitheads :D
-  let reducedbarrier = 1;
-  let reducedhealth = 0;
-  if(damageOptions.isShieldbreaker){
-    console.log("Ignoring barrier due to shieldbreaker");
-    if(damageOptions.automatics > 0 && damageOptions.hasHardenedArmor){
-      //erhöhe Panzerung um Stufe Automatik
-      reducedhealth =  damageOptions.damage - (damageOptions.armor + damageOptions.automatics);
-    } else {
-      console.log("Normal shieldbreaker process");
-      reducedhealth = damageOptions.damage - damageOptions.armor;
-    }
-  } else {
-    if(damageOptions.automatics > 0 && damageOptions.hasHardenedArmor){
-      reducedhealth = damageOptions.damage - actordata.data.barrier.value - (damageOptions.armor + damageOptions.automatics);
-    } else {
-      reducedhealth = damageOptions.damage - actordata.data.barrier.value - damageOptions.armor;
-      console.log(reducedhealth);
-    } 
-    reducedbarrier += damageOptions.automatics > 0 ? 2 : 0;
-    reducedbarrier += damageOptions.isSalve ? 1 : 0;
-    reducedbarrier += damageOptions.overcharge > 0 ? damageOptions.overcharge : 0;
-    actordata.data.barrier.value -= reducedbarrier;
-  }
-  if(reducedhealth<0){reducedhealth=0;}
-  actordata.data.health.value -= reducedhealth;
-  let speaker = actordata.actor;
-  //create chat output
-  const template = "systems/masseffect/templates/chat-damageconfirmation.html";
-  let templateContext = {
-    damage: damageOptions.damage,
-    reducedbarrier: reducedbarrier,
-    reducedhealth: reducedhealth
-  };
-  let chatData = {
-    user: game.user.id,
-    speaker: ChatMessage.getSpeaker({speaker}),
-    sound: CONFIG.sounds.dice,
-    content: await renderTemplate(template,templateContext)
-  } 
-  ChatMessage.create(chatData);
-  actordata.actor.render(); 
+    let actor = actordata.actor;
+    let element = event.currentTarget.closest(".rollitem").dataset;
+    console.log("KÖRPER: "+actordata.data.attributes.body.current);
+    let healingOptions = await Dialog.MonitorHealingData(actordata.data.attributes.body.current);
+    if(healingOptions.cancelled) return;
+    if(healingOptions.heal < 1) return; //i see you, shitheads :D
+    let oldHealth = actordata.data.health.value;
+    if(healingOptions.health <0){healingOptions.health = 0;}
+    actordata.data.health.value += healingOptions.health; 
+    if(actordata.data.health.value > actordata.data.health.max){actordata.data.health.value = actordata.data.health.max;}
+    let increasedHealth = actordata.data.health.value - oldHealth;
+
+    let oldExhaustion = actordata.data.exhaustion.value;
+    if(healingOptions.exhaustion<0){healingOptions.exhaustion=0;}
+    actordata.data.exhaustion.value += healingOptions.exhaustion;
+    if(actordata.data.exhaustion.value > actordata.data.exhaustion.max){actordata.data.exhaustion.value = actordata.data.exhaustion.max;}
+    let increasedExhaustion = actordata.data.exhaustion.value - oldExhaustion;
+
+    let templateContext = {
+      heal: increasedHealth, 
+      exhaustion:increasedExhaustion
+    };
+    createChatMessage(actor,templateContext,"systems/masseffect/templates/chat-healconfirmation.html");
+    await actordata.actor.update({
+      "system.health.value": actordata.data.health.value,
+      "system.exhaustion.value": actordata.data.exhaustion.value
+    });
+    actordata.actor.render(); 
 }
-export async function onRegenerateBarrier(actordata,event) {}
-export async function onDamageTaken(actordata,event) {}
-export async function onHealing(actordata,event) {}
 export async function onUsePower(actordata,event) {}
 export async function onReplenishPower(actordata,event) {}
 
@@ -106,27 +84,102 @@ export async function onGenericRoll(actordata,event) {
     }
     game.combats.active.setInitiative(combatant.id, newInitiative);
     //create chat output
-    const template = "systems/masseffect/templates/chat-tickconfirmation.html";
     let templateContext = {
-        oldvalue: parseInt(newInitiative-checkOptions.realwgs),
-        newvalue: newInitiative
+      oldvalue: parseInt(newInitiative-checkOptions.realwgs),
+      newvalue: newInitiative
     };
-    let chatData = {
-        user: game.user.id,
-        speaker: ChatMessage.getSpeaker({actor}),
-        sound: CONFIG.sounds.dice,
-        content: await renderTemplate(template,templateContext)
-    } 
-    ChatMessage.create(chatData);
+    createChatMessage(actor,templateContext,"systems/masseffect/templates/chat-tickconfirmation.html");
   }
   export async function rollDamageCode(event){
     event.preventDefault();
     let element = event.currentTarget.closest(".rollitem").dataset;
     let damagecode = element.code;
-    console.log(damagecode);
     let attributes = element.attributes;
-    console.log(attributes);
     let actorId = element.actor;
     let actor = game.actors.get(actorId);
     Dice.damageCodeDeck(actor,damagecode,attributes); 
   }
+  export async function onShieldDamgeTaken(actordata,event) {
+    event.preventDefault();
+    let actor = actordata.actor;
+    let element = event.currentTarget.closest(".rollitem").dataset;
+    let damageOptions = await Dialog.MonitorAttackData();
+    if(damageOptions.cancelled) return;
+    if(damageOptions.damage < 0) return; //i see you, shitheads :D
+    let reducedbarrier = 1;
+    let reducedhealth = 0;
+    if(damageOptions.isShieldbreaker){ 
+      if(damageOptions.automatics > 0 && damageOptions.hasHardenedArmor){ 
+        reducedhealth =  damageOptions.damage - (damageOptions.armor + damageOptions.automatics);
+      } else { 
+        reducedhealth = damageOptions.damage - damageOptions.armor;
+      }
+    } else {
+      if(damageOptions.automatics > 0 && damageOptions.hasHardenedArmor){
+        reducedhealth = damageOptions.damage - actordata.data.barrier.value - (damageOptions.armor + damageOptions.automatics);
+      } else {
+        reducedhealth = damageOptions.damage - actordata.data.barrier.value - damageOptions.armor;
+      } 
+      reducedbarrier += damageOptions.automatics > 0 ? 2 : 0;
+      reducedbarrier += damageOptions.isSalve ? 1 : 0;
+      reducedbarrier += damageOptions.overcharge > 0 ? damageOptions.overcharge : 0;
+      actordata.data.barrier.value -= reducedbarrier;
+    }
+    if(reducedhealth<0){reducedhealth=0;}
+    actordata.data.health.value -= reducedhealth; 
+  
+    let templateContext = {
+      damage: damageOptions.damage,
+      reducedbarrier: reducedbarrier,
+      reducedhealth: reducedhealth
+    };
+    createChatMessage(actor,templateContext,"systems/masseffect/templates/chat-damageconfirmation.html");
+    await actordata.actor.update({
+      "system.health.value": actordata.data.health.value,
+      "system.barrier.value": actordata.data.barrier.value
+    });
+    actordata.actor.render(); 
+  }
+
+  export async function onRegenerateBarrier(actordata,event) {
+    event.preventDefault();
+    let actor = actordata.actor;
+    let element = event.currentTarget.closest(".rollitem").dataset;
+    actordata.data.barrier.value = actordata.data.barrier.max;
+    //create chat output
+    createChatMessage(actor,{},"systems/masseffect/templates/chat-barrierrenegeration.html");
+    await actordata.actor.update({"system.barrier.value": actordata.data.barrier.value});
+    actordata.actor.render(); 
+  }
+
+  export async function onDamageTaken(actordata,event) {
+    event.preventDefault();
+    let actor = actordata.actor;
+    let element = event.currentTarget.closest(".rollitem").dataset;
+    let damageOptions = await Dialog.MonitorDamageData();
+    if(damageOptions.cancelled) return;
+    if(damageOptions.damage < 0) return; //i see you, shitheads :D
+    let reducedhealth = damageOptions.damage - damageOptions.armor;
+    console.log(reducedhealth);
+    if(reducedhealth <0){reducedhealth = 0;}
+    actordata.data.health.value -= reducedhealth; 
+    let templateContext = {
+      damage: damageOptions.damage, 
+      reducedhealth: reducedhealth
+    };
+    createChatMessage(actor,templateContext,"systems/masseffect/templates/chat-damageconfirmation.html");
+    await actordata.actor.update({
+      "system.health.value": actordata.data.health.value
+    });
+    actordata.actor.render(); 
+}
+
+async function createChatMessage(actor,templateContext,template) {
+  let chatData = {
+    user: game.user.id,
+    speaker: ChatMessage.getSpeaker({actor}),
+    sound: CONFIG.sounds.dice,
+    content: await renderTemplate(template,templateContext)
+  } 
+  ChatMessage.create(chatData);
+}

@@ -35,6 +35,22 @@
         <div class="fullwidth">
             <div class="progress">
                 <div class="statusbar">
+                    ERSCHÖPFUNG
+                    <div class="bar_fill" style="background-color: #538898; width: {{data.exhaustion.exhaustionpercent}}%;">
+                    </div>
+                </div>
+            </div>   
+            <input class="headboxsmall" type="number" name="system.exhaustion.value" value="{{data.exhaustion.value}}">
+            <input class="headboxsmall" type="number" name="system.exhaustion.max" value="{{data.exhaustion.max}}"> 
+            <a class="rollitem exhaustion" title="exhaustion damage"><i class="fa-solid fa-face-exhaling"></i></a>
+            <a class="rollitem hide" title="heal"><i class="fa-solid fa-kit-medical"></i></a>
+        </div>
+        <div class="fullwidthspacer">
+        </div>
+        <br>
+        <div class="fullwidth">
+            <div class="progress">
+                <div class="statusbar">
                     KRAFTPUNKTE
                     <div class="bar_fill" style="background-color: #538898; width: {{data.power.powerpercent}}%;">
                     </div>
