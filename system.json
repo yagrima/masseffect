@@ -1,6 +1,6 @@
 {
     "id": "masseffect",
-    "version": "0.3",
+    "version": "0.4",
     "title": "Mass Effect Sandbox",
     "url": "https://github.com/yagrima/masseffect",
     "description": "A minimalist game system which provides configurable Actor and Item templates to support free-form system agnostic game-play.",
